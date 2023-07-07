@@ -6,11 +6,11 @@ import {
   useTimelineEffect,
   formatMonthYear,
   MonthYear,
-  Props,
 } from '.'
 import styles from './styles.module.css'
+import { EventManager } from './types'
 
-export const EventManager: React.FC<Props> = ({
+export const EventManagerFunc: EventManager = ({
   resources,
   onClick,
   onUpdateDate,

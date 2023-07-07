@@ -21,3 +21,5 @@ export type Props = {
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }
+
+export type EventManager = React.FC<Props>
