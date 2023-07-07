@@ -1,5 +1,5 @@
-import './styles.css'
-export * from './Timeline'
-export * from './types'
-export * from './utils'
-export * from './resource-hook'
+import "./styles.css";
+export * from "./EventManager";
+export * from "./types";
+export * from "./utils";
+export * from "./resource-hook";

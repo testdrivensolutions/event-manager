@@ -7,9 +7,9 @@ import {
   formatMonthYear,
   MonthYear,
   Props
-} from "./";
+} from ".";
 
-export const Timeline: React.FC<Props> = ({
+export const EventManager: React.FC<Props> = ({
   resources,
   onClick,
   onUpdateDate
