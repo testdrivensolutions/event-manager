@@ -18,10 +18,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/event-manager.es.js",
       "require": "./dist/event-manager.umd.js"
-    },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
     }
   },
   "scripts": {
