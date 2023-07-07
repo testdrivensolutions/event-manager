@@ -13,11 +13,15 @@
   "private": false,
   "main": "./dist/event-manager.umd.js",
   "module": "./dist/event-manager.es.js",
-  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types.d.ts",
       "import": "./dist/event-manager.es.js",
       "require": "./dist/event-manager.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "scripts": {
