@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
-@import url('./button.css');
+@import url('./button.module.css');
 
-.timeline-container {
+.timelineContainer {
   position: relative;
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@
   border-radius: 5px;
 }
 
-.timeline-headline {
+.timelineHeadline {
   position: sticky;
   left: 0;
   z-index: 1;
@@ -27,22 +27,22 @@
   font-weight: 500;
 }
 
-.timeline-actions {
+.timelineActions {
   display: flex;
   align-items: center;
 }
 
-.timeline-actions .btn:not(:last-child) {
+.timelineActions .btn:not(:last-child) {
   margin-right: 12px;
 }
 
-.timeline-table {
+.timelineTable {
   border-collapse: collapse;
   margin-top: 36px;
 }
 
-.timeline-table th:first-child,
-.timeline-table tr td:first-child {
+.timelineTable th:first-child,
+.timelineTable tr td:first-child {
   position: sticky;
   left: 0;
   z-index: 1;
@@ -52,7 +52,7 @@
   white-space: nowrap;
 }
 
-.timeline-table th {
+.timelineTable th {
   padding: 0 12px;
   border-bottom: #e0e0e0 solid 2px;
 }
@@ -80,7 +80,7 @@
   background-color: #ddd; /* Background color of the scrollbar track on hover */
 }
 
-.event-cell {
+.eventCell {
   padding: 6px 0;
   color: transparent;
   max-width: 12px;
@@ -104,12 +104,12 @@
   border-bottom-right-radius: 5px;
 }
 
-.timeline-table tbody tr {
+.timelineTable tbody tr {
   position: relative;
 }
 
-.timeline-table tbody .event-cell::before,
-.timeline-table tbody .event-cell::after {
+.timelineTable tbody .eventCell::before,
+.timelineTable tbody .eventCell::after {
   content: '';
   position: absolute;
   left: 0;
@@ -118,10 +118,10 @@
   background-color: #fafafa;
 }
 
-.timeline-table tbody .event-cell::before {
+.timelineTable tbody .eventCell::before {
   top: 0;
 }
 
-.timeline-table tbody .event-cell::after {
+.timelineTable tbody .eventCell::after {
   bottom: 0;
 }

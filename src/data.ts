@@ -20,7 +20,19 @@ export const resources: Resource[] = [
       {
         start: addDays(new Date(), -5),
         end: addDays(new Date(), 10),
-        color: '#E6EE9C',
+        color: '#E69C',
+        title: 'Sick',
+      },
+    ],
+  },
+  {
+    id: '3',
+    title: 'Moe Lester',
+    events: [
+      {
+        start: addDays(new Date(), 1),
+        end: addDays(new Date(), 2),
+        color: '#C3df',
         title: 'Sick',
       },
     ],

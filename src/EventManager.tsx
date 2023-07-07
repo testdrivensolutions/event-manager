@@ -8,7 +8,7 @@ import {
   MonthYear,
   Props,
 } from '.'
-import './styles.css'
+import styles from './styles.module.css'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -62,22 +62,31 @@ export const EventManager: React.FC<Props> = ({
 
   return (
     <>
-      <div className='timeline-container'>
-        <div className='timeline-headline'>
-          <span className='month-year'>{formatMonthYear(monthYear)}</span>
-          <div className='timeline-actions'>
-            <button className='btn btn-back' onClick={handleBack}>
+      <div className={styles.timelineContainer}>
+        <div className={styles.timelineHeadline}>
+          <span className={styles.monthYear}>{formatMonthYear(monthYear)}</span>
+          <div className={styles.timelineActions}>
+            <button
+              className={`${styles.btn} ${styles.btnBack}`}
+              onClick={handleBack}
+            >
               {'<'}
             </button>
-            <button className='btn btn-today' onClick={handleToday}>
+            <button
+              className={`${styles.btn} ${styles.today}`}
+              onClick={handleToday}
+            >
               Today
             </button>
-            <button className='btn btn-forward' onClick={handleForward}>
+            <button
+              className={`${styles.btn} ${styles.forward}`}
+              onClick={handleForward}
+            >
               {'>'}
             </button>
           </div>
         </div>
-        <table className='timeline-table'>
+        <table className={styles.timelineTable}>
           <thead>
             <tr>
               <th>&nbsp;</th>
@@ -94,7 +103,7 @@ export const EventManager: React.FC<Props> = ({
                   <td
                     key={`${day.toDateString()}-${item.id}`}
                     id={`${day.toDateString()}-${item.id}`}
-                    className='event-cell'
+                    className={styles.eventCell}
                     onClick={handleClick}
                   ></td>
                 ))}

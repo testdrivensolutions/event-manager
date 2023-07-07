@@ -11,13 +11,21 @@
     "calendar"
   ],
   "private": false,
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/event-manager.umd.js",
+  "module": "./dist/event-manager.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/event-manager.es.js",
+      "require": "./dist/event-manager.umd.js"
+    }
+  },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "watch": "vitest",
+    "coverage": "vitest run --coverage",
     "prepare": "npm run build"
   },
   "peerDependencies": {
@@ -34,10 +42,14 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@vitejs/plugin-react": "^4.0.2",
     "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vite": "^4.4.2",
+    "vite-plugin-dts": "^3.1.1"
   }
 }

@@ -1,3 +1,4 @@
-import * as EventManager from './components'
-
-export { EventManager }
+export * from './EventManager'
+export * from './types'
+export * from './utils'
+export * from './resource-hook'
