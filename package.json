@@ -19,8 +19,7 @@
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "prepare": "npm run build",
-    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
-    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\""
+    "pub": "npm run prepare && npm publish"
   },
   "peerDependencies": {
     "react": ">=16"
