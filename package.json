@@ -1,6 +1,6 @@
 {
   "name": "@event-manager/react",
-  "version": "0.1.20",
+  "version": "0.1.18",
   "description": "Event manager component for react",
   "author": "Juris Bandenieks <jurisbandenieks90@gmail.com",
   "license": "MIT",
@@ -18,6 +18,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/event-manager.es.js",
       "require": "./dist/event-manager.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "scripts": {
