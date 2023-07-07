@@ -60,46 +60,48 @@ export const EventManager: React.FC<Props> = ({
   };
 
   return (
-    <div className="timeline-container">
-      <div className="timeline-headline">
-        <span className="month-year">{formatMonthYear(monthYear)}</span>
-        <div className="timeline-actions">
-          <button className="btn btn-back" onClick={handleBack}>
-            {"<"}
-          </button>
-          <button className="btn btn-today" onClick={handleToday}>
-            Today
-          </button>
-          <button className="btn btn-forward" onClick={handleForward}>
-            {">"}
-          </button>
+    <>
+      <div className="timeline-container">
+        <div className="timeline-headline">
+          <span className="month-year">{formatMonthYear(monthYear)}</span>
+          <div className="timeline-actions">
+            <button className="btn btn-back" onClick={handleBack}>
+              {"<"}
+            </button>
+            <button className="btn btn-today" onClick={handleToday}>
+              Today
+            </button>
+            <button className="btn btn-forward" onClick={handleForward}>
+              {">"}
+            </button>
+          </div>
         </div>
-      </div>
-      <table className="timeline-table">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            {daysInMonth.map((day) => (
-              <th key={day.toDateString()}>{formatDate(day)}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {resources.map((item) => (
-            <tr key={item.id} id={item.id}>
-              <td id={item.title}>{item.title}</td>
+        <table className="timeline-table">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
               {daysInMonth.map((day) => (
-                <td
-                  key={`${day.toDateString()}-${item.id}`}
-                  id={`${day.toDateString()}-${item.id}`}
-                  className="event-cell"
-                  onClick={handleClick}
-                ></td>
+                <th key={day.toDateString()}>{formatDate(day)}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {resources.map((item) => (
+              <tr key={item.id} id={item.id}>
+                <td id={item.title}>{item.title}</td>
+                {daysInMonth.map((day) => (
+                  <td
+                    key={`${day.toDateString()}-${item.id}`}
+                    id={`${day.toDateString()}-${item.id}`}
+                    className="event-cell"
+                    onClick={handleClick}
+                  ></td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
