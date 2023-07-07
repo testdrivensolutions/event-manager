@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { Key, useEffect } from 'react'
 import { MonthYear, Resource, getDatesInRange, isWeekend } from './'
 
 export const useTimelineEffect = (
   resources: Resource[],
   monthYear: MonthYear,
+  key: Key,
 ) => {
   useEffect(() => {
     resources.forEach((item) => {
@@ -11,10 +12,9 @@ export const useTimelineEffect = (
         const range = getDatesInRange(event.start, event.end ?? event.start)
         range.forEach((day, index, array) => {
           const durationCell = document.getElementById(
-            `${day.toDateString()}-${item.id}`,
+            `${day.toDateString()}-${item.id}-${key}`,
           )
           if (durationCell) {
-            durationCell.classList.add('duration')
             durationCell.style.backgroundColor = event.color ?? ''
             durationCell.style.cursor = 'pointer'
             durationCell.style.boxShadow = '0 1px 0 0 rgba(0, 0, 0, 0.15)'

@@ -15,6 +15,14 @@ function App() {
     <div className='app'>
       <EventManager
         resources={resources}
+        id={1}
+        onClick={handleClick}
+        onUpdateDate={handleUpdateDate}
+      />
+
+      <EventManager
+        resources={resources}
+        id={2}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
       />

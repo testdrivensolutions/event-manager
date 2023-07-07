@@ -16,8 +16,11 @@ export type MonthYear = {
   year: number
 }
 
+export type ID = number | string
+
 export type Props = {
   resources: Resource[]
+  id: ID
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }

@@ -12,6 +12,7 @@ import styles from './styles.module.css'
 
 export const EventManager: React.FC<Props> = ({
   resources,
+  id,
   onClick,
   onUpdateDate,
 }) => {
@@ -19,7 +20,7 @@ export const EventManager: React.FC<Props> = ({
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
   const hasWeekends = true
 
-  useTimelineEffect(resources, monthYear)
+  useTimelineEffect(resources, monthYear, id)
 
   const handleBack = () => {
     let date
@@ -101,8 +102,8 @@ export const EventManager: React.FC<Props> = ({
                 <td id={item.title}>{item.title}</td>
                 {daysInMonth.map((day) => (
                   <td
-                    key={`${day.toDateString()}-${item.id}`}
-                    id={`${day.toDateString()}-${item.id}`}
+                    key={`${day.toDateString()}-${item.id}-${id}`}
+                    id={`${day.toDateString()}-${item.id}-${id}`}
                     className={styles.eventCell}
                     onClick={handleClick}
                   ></td>
