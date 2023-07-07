@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   formatDate,
   getDaysInMonth,
@@ -6,77 +6,77 @@ import {
   useTimelineEffect,
   formatMonthYear,
   MonthYear,
-  Props
-} from ".";
+  Props,
+} from '.'
 
 export const EventManager: React.FC<Props> = ({
   resources,
   onClick,
-  onUpdateDate
+  onUpdateDate,
 }) => {
-  const [monthYear, setMonthYear] = useState(getYearAndMonth());
-  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear));
-  const hasWeekends = true;
+  const [monthYear, setMonthYear] = useState(getYearAndMonth())
+  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
+  const hasWeekends = true
 
-  useTimelineEffect(resources, monthYear);
+  useTimelineEffect(resources, monthYear)
 
   const handleBack = () => {
-    let date;
+    let date
     if (monthYear.month <= 1) {
-      date = { month: 12, year: monthYear.year - 1 };
+      date = { month: 12, year: monthYear.year - 1 }
     } else {
-      date = { ...monthYear, month: monthYear.month - 1 };
+      date = { ...monthYear, month: monthYear.month - 1 }
     }
-    updateDate(date);
-  };
+    updateDate(date)
+  }
 
   const handleForward = () => {
-    let date;
+    let date
     if (monthYear.month >= 12) {
-      date = { month: 1, year: monthYear.year + 1 };
+      date = { month: 1, year: monthYear.year + 1 }
     } else {
-      date = { ...monthYear, month: monthYear.month + 1 };
+      date = { ...monthYear, month: monthYear.month + 1 }
     }
-    updateDate(date);
-  };
+    updateDate(date)
+  }
 
   const handleToday = () => {
-    updateDate();
-  };
+    updateDate()
+  }
 
   const updateDate = (date: MonthYear = getYearAndMonth()) => {
-    setMonthYear(date);
-    setDaysInMonth(getDaysInMonth(date, hasWeekends));
-    onUpdateDate(date);
-  };
+    setMonthYear(date)
+    setDaysInMonth(getDaysInMonth(date, hasWeekends))
+    onUpdateDate(date)
+  }
 
   const handleClick = (event: React.MouseEvent<HTMLTableCellElement>) => {
-    let data;
-    const { textContent } = event.currentTarget;
-    if (textContent && typeof textContent === "string") {
-      data = JSON.parse(textContent);
+    let data
+    const { textContent } = event.currentTarget
+    if (textContent && typeof textContent === 'string') {
+      data = JSON.parse(textContent)
     }
-    onClick(data);
-  };
+    onClick(data)
+  }
 
   return (
     <>
-      <div className="timeline-container">
-        <div className="timeline-headline">
-          <span className="month-year">{formatMonthYear(monthYear)}</span>
-          <div className="timeline-actions">
-            <button className="btn btn-back" onClick={handleBack}>
-              {"<"}
+      <div className='timeline-container'>
+        <div className='timeline-headline'>
+          <span className='month-year'>{formatMonthYear(monthYear)}</span>
+          <div className='timeline-actions'>
+            <button className='btn btn-back' onClick={handleBack}>
+              {'<'}
             </button>
-            <button className="btn btn-today" onClick={handleToday}>
+            <button className='btn btn-today' onClick={handleToday}>
               Today
             </button>
-            <button className="btn btn-forward" onClick={handleForward}>
-              {">"}
+            <button className='btn btn-forward' onClick={handleForward}>
+              {'>'}
             </button>
           </div>
         </div>
-        <table className="timeline-table">
+        <table className='timeline-table'>
           <thead>
             <tr>
               <th>&nbsp;</th>
@@ -93,7 +93,7 @@ export const EventManager: React.FC<Props> = ({
                   <td
                     key={`${day.toDateString()}-${item.id}`}
                     id={`${day.toDateString()}-${item.id}`}
-                    className="event-cell"
+                    className='event-cell'
                     onClick={handleClick}
                   ></td>
                 ))}
@@ -103,5 +103,5 @@ export const EventManager: React.FC<Props> = ({
         </table>
       </div>
     </>
-  );
-};
+  )
+}
