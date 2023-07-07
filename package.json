@@ -18,8 +18,7 @@
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "prepare": "npm run build",
-    "pub": "npm run prepare && npm publish"
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=16"

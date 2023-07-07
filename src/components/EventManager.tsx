@@ -8,6 +8,7 @@ import {
   MonthYear,
   Props,
 } from '.'
+import './styles.css'
 
 export const EventManager: React.FC<Props> = ({
   resources,
