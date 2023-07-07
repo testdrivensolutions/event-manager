@@ -13,7 +13,7 @@
   "private": false,
   "main": "./dist/event-manager.umd.js",
   "module": "./dist/event-manager.es.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/event-manager.es.js",
