@@ -85,23 +85,7 @@
   color: transparent;
   max-width: 12px;
   max-height: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.duration {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-}
-
-.start {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-.end {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  font-size: 0;
 }
 
 .timelineTable tbody tr {

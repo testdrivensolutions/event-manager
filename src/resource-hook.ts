@@ -8,41 +8,28 @@ export const useTimelineEffect = (
   useEffect(() => {
     resources.forEach((item) => {
       item.events.forEach((event) => {
-        const startCell = document.getElementById(
-          `${event.start.toDateString()}-${item.id}`,
-        )
-        if (startCell) {
-          startCell.classList.add('duration')
-          startCell.classList.add('start')
-          startCell.style.backgroundColor = event.color ?? '#000'
-          if (isWeekend(event.start)) startCell.style.opacity = '0.3'
-          startCell.textContent = JSON.stringify(item)
-        }
-
-        if (event.end) {
-          const range = getDatesInRange(event.start, event.end)
-          range.forEach((day) => {
-            const durationCell = document.getElementById(
-              `${day.toDateString()}-${item.id}`,
-            )
-            if (durationCell) {
-              durationCell.classList.add('duration')
-              durationCell.style.backgroundColor = event.color ?? '#000'
-              if (isWeekend(day)) durationCell.style.opacity = '0.3'
-              durationCell.textContent = JSON.stringify(item)
-            }
-          })
-
-          const end = document.getElementById(
-            `${event.end.toDateString()}-${item.id}`,
+        const range = getDatesInRange(event.start, event.end ?? event.start)
+        range.forEach((day, index, array) => {
+          const durationCell = document.getElementById(
+            `${day.toDateString()}-${item.id}`,
           )
-          if (end) {
-            end.classList.add('end')
-            end.style.backgroundColor = event.color ?? '#000'
-            if (isWeekend(event.end)) end.style.opacity = '0.3'
-            end.textContent = JSON.stringify(item)
+          if (durationCell) {
+            durationCell.classList.add('duration')
+            durationCell.style.backgroundColor = event.color ?? ''
+            durationCell.style.cursor = 'pointer'
+            durationCell.style.boxShadow = '0 1px 0 0 rgba(0, 0, 0, 0.15)'
+            if (index === 0) {
+              durationCell.style.borderTopLeftRadius = '5px'
+              durationCell.style.borderBottomLeftRadius = '5px'
+            }
+            if (index === array.length - 1) {
+              durationCell.style.borderTopRightRadius = '5px'
+              durationCell.style.borderBottomRightRadius = '5px'
+            }
+            if (isWeekend(day)) durationCell.style.opacity = '0.3'
+            durationCell.textContent = JSON.stringify(item)
           }
-        }
+        })
       })
     })
   }, [resources, monthYear])
