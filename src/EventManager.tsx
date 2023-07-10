@@ -9,12 +9,14 @@ import {
   Props,
   isWeekend,
 } from '.'
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 export const EventManager: React.FC<Props> = ({
   resources,
   tableId,
   hasWeekends = true,
+  searchable = false,
+  onSearch,
   onClick,
   onUpdateDate,
 }) => {
@@ -71,24 +73,15 @@ export const EventManager: React.FC<Props> = ({
     <>
       <div className={styles.timelineContainer}>
         <div className={styles.timelineHeadline}>
-          <span className={styles.monthYear}>{formatMonthYear(monthYear)}</span>
+          <span>{formatMonthYear(monthYear)}</span>
           <div className={styles.timelineActions}>
-            <button
-              className={`${styles.btn} ${styles.btnBack}`}
-              onClick={handleBack}
-            >
+            <button className={`${styles.btn}`} onClick={handleBack}>
               {'<'}
             </button>
-            <button
-              className={`${styles.btn} ${styles.today}`}
-              onClick={handleToday}
-            >
+            <button className={`${styles.btn} `} onClick={handleToday}>
               Today
             </button>
-            <button
-              className={`${styles.btn} ${styles.forward}`}
-              onClick={handleForward}
-            >
+            <button className={`${styles.btn} `} onClick={handleForward}>
               {'>'}
             </button>
           </div>

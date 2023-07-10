@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('./button.module.scss');
+
+.timelineContainer {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  background-color: #fafafa;
+  padding: 18px 18px 18px 0;
+  margin: 24px 24px 24px 24px;
+  overflow-x: auto;
+  border-radius: 5px;
+}
+
+.timelineHeadline {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  font-weight: 500;
+}
+
+.timelineActions {
+  display: flex;
+  align-items: center;
+
+  & .btn:not(:last-child) {
+    margin-right: 12px;
+  }
+}
+
+.timelineTable {
+  border-collapse: collapse;
+  margin-top: 36px;
+
+  & th:first-child,
+  & tr td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: #fafafa; /* Set the background color as needed */
+    padding: 6px 32px;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  & th {
+    padding: 0 12px;
+    border-bottom: #e0e0e0 solid 2px;
+  }
+
+  & tbody tr {
+    position: relative;
+  }
+
+  & tbody .eventCell::before,
+  & tbody .eventCell::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #fafafa;
+  }
+
+  & tbody .eventCell::before {
+    top: 0;
+  }
+
+  & tbody .eventCell::after {
+    bottom: 0;
+  }
+}
+
+.eventCell {
+  padding: 6px 0;
+  color: transparent;
+  max-width: 12px;
+  max-height: 12px;
+  font-size: 0;
+}
