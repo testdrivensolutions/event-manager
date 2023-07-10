@@ -50,20 +50,24 @@ handleUpdateDate(data: MonthYear) => void
 ## Timeline Props
 
 ```
-<Timeline
+<EventManager
   resources={resources}
   tableId={1}
-  hasWeekends?={false}
+  hasWeekends={false}
+  searchable={true}
+  onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
 />
 ```
 
 ```
-Props = {
+export type Props = {
   resources: Resource[]
   tableId: ID
   hasWeekends?: boolean
+  searchable?: boolean
+  onSearch?: (text: string) => void
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }
