@@ -18,41 +18,53 @@ No dependancies used
 
 ## Used Types
 
-`Event {
+```
+Event {
   start: Date
   end?: Date
   title: string
   color?: string
-}`
+}
+```
 
-`Resource {
+```
+Resource {
   id: string
   title: string
   events: Event[]
-}`
+}
+```
 
-`MonthYear {
+```
+MonthYear {
   month: number
   year: number
-}`
+}
+```
 
-`handleClick(data: Resource) => void
-handleUpdateDate(data: MonthYear) => void`
+```
+handleClick(data: Resource) => void
+handleUpdateDate(data: MonthYear) => void
+```
 
 ## Timeline Props
 
-`<Timeline
+```
+<Timeline
   resources={resources}
   tableId={1}
   hasWeekends?={false}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
-/>`
+/>
+```
 
-`Props = {
+```
+Props = {
   resources: Resource[]
   tableId: ID
   hasWeekends?: boolean
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void
-}`
+}
+```
