@@ -10,6 +10,9 @@
     "events",
     "calendar"
   ],
+  "bugs": {
+    "url": "https://github.com/jurisbandenieks/event-manager/issues"
+  },
   "private": false,
   "main": "./dist/event-manager.umd.js",
   "module": "./dist/event-manager.es.js",

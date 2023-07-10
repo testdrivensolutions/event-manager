@@ -14,6 +14,8 @@ No dependancies used
 
 `import { EventManager } from '@event-manager/react'`
 
+![alt text](https://github.com/jurisbandenieks/event-manager/blob/HEAD/images/event-manager.png)
+
 ## Used Types
 
 `Event {
