@@ -1,6 +1,6 @@
 {
   "name": "@event-manager/react",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Event manager component for react",
   "author": "Juris Bandenieks <jurisbandenieks90@gmail.com",
   "license": "MIT",
