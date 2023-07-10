@@ -33,6 +33,16 @@ handleUpdateDate(data: MonthYear) => void`
 
 `<Timeline
   resources={resources}
+  tableId={1}
+  hasWeekends?={false}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
 />`
+
+`Props = {
+  resources: Resource[]
+  tableId: ID
+  hasWeekends?: boolean
+  onClick: (data: Resource | undefined) => void
+  onUpdateDate: (date: MonthYear) => void
+}`

@@ -7,20 +7,21 @@ import {
   formatMonthYear,
   MonthYear,
   Props,
+  isWeekend,
 } from '.'
 import styles from './styles.module.css'
 
 export const EventManager: React.FC<Props> = ({
   resources,
-  id,
+  tableId,
+  hasWeekends = true,
   onClick,
   onUpdateDate,
 }) => {
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
-  const hasWeekends = true
 
-  useTimelineEffect(resources, monthYear, id)
+  useTimelineEffect(resources, monthYear, tableId)
 
   const handleBack = () => {
     let date
@@ -59,6 +60,11 @@ export const EventManager: React.FC<Props> = ({
       data = JSON.parse(textContent)
     }
     onClick(data)
+  }
+
+  const inculdeWeekends = (day: Date): boolean => {
+    if (hasWeekends) return true
+    return !hasWeekends && !isWeekend(day)
   }
 
   return (
@@ -100,14 +106,18 @@ export const EventManager: React.FC<Props> = ({
             {resources.map((item) => (
               <tr key={item.id} id={item.id}>
                 <td id={item.title}>{item.title}</td>
-                {daysInMonth.map((day) => (
-                  <td
-                    key={`${day.toDateString()}-${item.id}-${id}`}
-                    id={`${day.toDateString()}-${item.id}-${id}`}
-                    className={styles.eventCell}
-                    onClick={handleClick}
-                  ></td>
-                ))}
+                {daysInMonth.map((day) =>
+                  inculdeWeekends(day) ? (
+                    <td
+                      key={`${day.toDateString()}-${item.id}-${tableId}`}
+                      id={`${day.toDateString()}-${item.id}-${tableId}`}
+                      className={styles.eventCell}
+                      onClick={handleClick}
+                    ></td>
+                  ) : (
+                    <></>
+                  ),
+                )}
               </tr>
             ))}
           </tbody>

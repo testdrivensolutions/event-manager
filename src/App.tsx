@@ -15,14 +15,15 @@ function App() {
     <div className='app'>
       <EventManager
         resources={resources}
-        id={1}
+        tableId={1}
+        hasWeekends={false}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
       />
 
       <EventManager
         resources={resources}
-        id={2}
+        tableId={2}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
       />
