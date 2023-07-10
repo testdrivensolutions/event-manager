@@ -9,7 +9,6 @@ export const useTimelineEffect = (
 ) => {
   useEffect(() => {
     if (flat) {
-      console.log(key, flat)
       const eventTable = document.getElementById(`${key} timeline-container`)
       if (eventTable) eventTable.style.boxShadow = 'none'
     }
