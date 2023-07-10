@@ -33,7 +33,11 @@ export const useTimelineEffect = (
               durationCell.style.borderBottomRightRadius = '5px'
             }
             if (isWeekend(day)) durationCell.style.opacity = '0.3'
-            durationCell.textContent = JSON.stringify(item)
+            const eventData = {
+              event,
+              resourceId: item.id,
+            }
+            durationCell.textContent = JSON.stringify(eventData)
           }
         })
       })

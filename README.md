@@ -43,7 +43,14 @@ MonthYear {
 ```
 
 ```
-handleClick(data: Resource) => void
+ClickData = {
+  event: Event
+  resourceId: string
+}
+```
+
+```
+handleClick(data: ClickData | undefined) => void
 handleUpdateDate(data: MonthYear) => void
 ```
 
@@ -70,7 +77,7 @@ Props = {
   searchable?: boolean
   flat?: boolean
   onSearch?: (text: string) => void
-  onClick: (data: Resource | undefined) => void
+  onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }
 ```

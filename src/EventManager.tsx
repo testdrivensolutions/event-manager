@@ -9,6 +9,7 @@ import {
   Props,
   isWeekend,
   useDebounce,
+  ClickData,
 } from '.'
 import styles from './styles.module.scss'
 
@@ -69,7 +70,7 @@ export const EventManager: React.FC<Props> = ({
     let data
     const { textContent } = event.currentTarget
     if (textContent && typeof textContent === 'string') {
-      data = JSON.parse(textContent)
+      data = JSON.parse(textContent) as ClickData
     }
     onClick(data)
   }

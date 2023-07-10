@@ -1,9 +1,9 @@
 import React from 'react'
 import { resources } from './data'
-import { MonthYear, Resource, EventManager } from './'
+import { MonthYear, EventManager, ClickData } from './'
 
 function App() {
-  const handleClick = (data: Resource | undefined) => {
+  const handleClick = (data: ClickData | undefined) => {
     console.log(data)
   }
 

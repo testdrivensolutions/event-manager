@@ -16,6 +16,11 @@ export type MonthYear = {
   year: number
 }
 
+export type ClickData = {
+  event: Event
+  resourceId: string
+}
+
 export type ID = number | string
 
 export type Props = {
@@ -25,6 +30,6 @@ export type Props = {
   searchable?: boolean // default false
   flat?: boolean // default false
   onSearch?: (text: string) => void
-  onClick: (data: Resource | undefined) => void
+  onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }
