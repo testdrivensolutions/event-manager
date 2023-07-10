@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   formatDate,
   getDaysInMonth,
@@ -8,6 +8,7 @@ import {
   MonthYear,
   Props,
   isWeekend,
+  useDebounce,
 } from '.'
 import styles from './styles.module.scss'
 
@@ -20,10 +21,18 @@ export const EventManager: React.FC<Props> = ({
   onClick,
   onUpdateDate,
 }) => {
+  const [inputValue, setInputValue] = useState('')
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useTimelineEffect(resources, monthYear, tableId)
+  const debouncedInputValue = useDebounce(inputValue, 300)
+
+  useEffect(() => {
+    if (onSearch) {
+      onSearch(inputValue)
+    }
+  }, [debouncedInputValue])
 
   const handleBack = () => {
     let date
@@ -69,11 +78,25 @@ export const EventManager: React.FC<Props> = ({
     return !hasWeekends && !isWeekend(day)
   }
 
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (searchable) {
+      setInputValue(event.target.value)
+    }
+  }
+
   return (
     <>
       <div className={styles.timelineContainer}>
         <div className={styles.timelineHeadline}>
-          <span>{formatMonthYear(monthYear)}</span>
+          {searchable && (
+            <div className={styles.inputGroup}>
+              <input type='text' required onChange={handleInput} />
+              <span className='highlight'></span>
+              <span className='bar'></span>
+              <label>Search</label>
+            </div>
+          )}
+          <div>{formatMonthYear(monthYear)}</div>
           <div className={styles.timelineActions}>
             <button className={`${styles.btn}`} onClick={handleBack}>
               {'<'}
@@ -99,17 +122,16 @@ export const EventManager: React.FC<Props> = ({
             {resources.map((item) => (
               <tr key={item.id} id={item.id}>
                 <td id={item.title}>{item.title}</td>
-                {daysInMonth.map((day) =>
-                  inculdeWeekends(day) ? (
-                    <td
-                      key={`${day.toDateString()}-${item.id}-${tableId}`}
-                      id={`${day.toDateString()}-${item.id}-${tableId}`}
-                      className={styles.eventCell}
-                      onClick={handleClick}
-                    ></td>
-                  ) : (
-                    <></>
-                  ),
+                {daysInMonth.map(
+                  (day) =>
+                    inculdeWeekends(day) && (
+                      <td
+                        key={`${day.toDateString()}-${item.id}-${tableId}`}
+                        id={`${day.toDateString()}-${item.id}-${tableId}`}
+                        className={styles.eventCell}
+                        onClick={handleClick}
+                      ></td>
+                    ),
                 )}
               </tr>
             ))}

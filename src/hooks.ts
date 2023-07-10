@@ -1,5 +1,5 @@
-import { Key, useEffect } from 'react'
-import { MonthYear, Resource, getDatesInRange, isWeekend } from './'
+import { Key, useEffect, useState } from 'react'
+import { MonthYear, Resource, getDatesInRange, isWeekend } from '.'
 
 export const useTimelineEffect = (
   resources: Resource[],
@@ -33,4 +33,20 @@ export const useTimelineEffect = (
       })
     })
   }, [resources, monthYear])
+}
+
+export const useDebounce = <T>(value: T, delay: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [value, delay])
+
+  return debouncedValue
 }

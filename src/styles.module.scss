@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
-@import url('./button.module.scss');
+
+$bg-color: #424242;
+$hl-color: #2196f3;
+$muted-color: mix(white, $bg-color, 70%);
+$trans-time: 200ms;
+$width: 200px;
 
 .timelineContainer {
   position: relative;
@@ -31,7 +36,7 @@
   display: flex;
   align-items: center;
 
-  & .btn:not(:last-child) {
+  & *:not(:last-child) {
     margin-right: 12px;
   }
 }
@@ -85,4 +90,79 @@
   max-width: 12px;
   max-height: 12px;
   font-size: 0;
+}
+
+.btn {
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  outline: none;
+
+  &:hover {
+    background-color: #ccc;
+  }
+}
+
+.inputGroup {
+  position: relative;
+  margin: 24px 0;
+
+  input {
+    background: none;
+    color: $muted-color;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: $width;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $muted-color;
+    &:focus {
+      outline: none;
+    }
+    &:focus ~ label,
+    &:valid ~ label {
+      top: -14px;
+      font-size: 12px;
+      color: $hl-color;
+    }
+    &:focus ~ .bar:before {
+      width: $width;
+    }
+  }
+
+  label {
+    color: $muted-color;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: $trans-time ease all;
+  }
+
+  .bar {
+    position: relative;
+    display: block;
+    width: $width;
+    &:before {
+      content: '';
+      height: 2px;
+      width: 0;
+      bottom: 0px;
+      position: absolute;
+      background: $hl-color;
+      transition: $trans-time ease all;
+      left: 0%;
+    }
+  }
 }

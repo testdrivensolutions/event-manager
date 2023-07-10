@@ -11,12 +11,18 @@ function App() {
     console.log(date)
   }
 
+  const handleSearch = (text: string) => {
+    console.log(text)
+  }
+
   return (
     <div className='app'>
       <EventManager
         resources={resources}
         tableId={1}
         hasWeekends={false}
+        searchable={true}
+        onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
       />
