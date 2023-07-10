@@ -17,6 +17,7 @@ export const EventManager: React.FC<Props> = ({
   tableId,
   hasWeekends = true,
   searchable = false,
+  flat = false,
   onSearch,
   onClick,
   onUpdateDate,
@@ -25,7 +26,7 @@ export const EventManager: React.FC<Props> = ({
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
-  useTimelineEffect(resources, monthYear, tableId)
+  useTimelineEffect(resources, monthYear, tableId, flat)
   const debouncedInputValue = useDebounce(inputValue, 300)
 
   useEffect(() => {
@@ -86,7 +87,10 @@ export const EventManager: React.FC<Props> = ({
 
   return (
     <>
-      <div className={styles.timelineContainer}>
+      <div
+        className={styles.timelineContainer}
+        id={`${tableId} timeline-container`}
+      >
         <div className={styles.timelineHeadline}>
           {searchable && (
             <div className={styles.inputGroup}>
@@ -98,13 +102,13 @@ export const EventManager: React.FC<Props> = ({
           )}
           <div>{formatMonthYear(monthYear)}</div>
           <div className={styles.timelineActions}>
-            <button className={`${styles.btn}`} onClick={handleBack}>
+            <button className={styles.btn} onClick={handleBack}>
               {'<'}
             </button>
-            <button className={`${styles.btn} `} onClick={handleToday}>
+            <button className={styles.btn} onClick={handleToday}>
               Today
             </button>
-            <button className={`${styles.btn} `} onClick={handleForward}>
+            <button className={styles.btn} onClick={handleForward}>
               {'>'}
             </button>
           </div>

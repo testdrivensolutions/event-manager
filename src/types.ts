@@ -23,6 +23,7 @@ export type Props = {
   tableId: ID
   hasWeekends?: boolean
   searchable?: boolean
+  flat?: boolean
   onSearch?: (text: string) => void
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void

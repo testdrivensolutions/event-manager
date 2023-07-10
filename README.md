@@ -55,6 +55,7 @@ handleUpdateDate(data: MonthYear) => void
   tableId={1}
   hasWeekends={false}
   searchable={true}
+  flat={true}
   onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
@@ -62,11 +63,12 @@ handleUpdateDate(data: MonthYear) => void
 ```
 
 ```
-export type Props = {
+Props = {
   resources: Resource[]
   tableId: ID
   hasWeekends?: boolean
   searchable?: boolean
+  flat?: boolean
   onSearch?: (text: string) => void
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void

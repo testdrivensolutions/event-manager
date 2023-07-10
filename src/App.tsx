@@ -32,6 +32,7 @@ function App() {
         tableId={2}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
+        flat={true}
       />
     </div>
   )

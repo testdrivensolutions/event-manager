@@ -5,8 +5,15 @@ export const useTimelineEffect = (
   resources: Resource[],
   monthYear: MonthYear,
   key: Key,
+  flat: boolean,
 ) => {
   useEffect(() => {
+    if (flat) {
+      console.log(key, flat)
+      const eventTable = document.getElementById(`${key} timeline-container`)
+      if (eventTable) eventTable.style.boxShadow = 'none'
+    }
+
     resources.forEach((item) => {
       item.events.forEach((event) => {
         const range = getDatesInRange(event.start, event.end ?? event.start)
