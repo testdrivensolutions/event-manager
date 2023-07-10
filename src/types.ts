@@ -21,9 +21,9 @@ export type ID = number | string
 export type Props = {
   resources: Resource[]
   tableId: ID
-  hasWeekends?: boolean
-  searchable?: boolean
-  flat?: boolean
+  hasWeekends?: boolean // default false
+  searchable?: boolean // default false
+  flat?: boolean // default false
   onSearch?: (text: string) => void
   onClick: (data: Resource | undefined) => void
   onUpdateDate: (date: MonthYear) => void

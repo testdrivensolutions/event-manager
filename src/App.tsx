@@ -20,8 +20,8 @@ function App() {
       <EventManager
         resources={resources}
         tableId={1}
-        hasWeekends={false}
-        searchable={true}
+        hasWeekends
+        searchable
         onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
@@ -32,7 +32,7 @@ function App() {
         tableId={2}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
-        flat={true}
+        flat
       />
     </div>
   )

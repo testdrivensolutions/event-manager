@@ -15,7 +15,7 @@ import styles from './styles.module.scss'
 export const EventManager: React.FC<Props> = ({
   resources,
   tableId,
-  hasWeekends = true,
+  hasWeekends = false,
   searchable = false,
   flat = false,
   onSearch,
