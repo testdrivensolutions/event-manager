@@ -6,6 +6,14 @@ View and manage resources on a timeline
 
 No dependancies used
 
+## Installation
+
+`npm install @event-manager/react`
+
+## Usage
+
+`import { EventManager } from '@event-manager/react'`
+
 ## Used Types
 
 `Event {
