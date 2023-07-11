@@ -25,15 +25,6 @@ function App() {
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
       />
-
-      <EventManager
-        resources={resources}
-        tableId={2}
-        hasWeekends
-        onClick={handleClick}
-        onUpdateDate={handleUpdateDate}
-        flat
-      />
     </div>
   )
 }
