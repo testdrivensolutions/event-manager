@@ -10,6 +10,7 @@ import {
   isWeekend,
   useDebounce,
   ClickData,
+  useResourcesByEventTypes,
 } from '.'
 import styles from './styles.module.scss'
 
@@ -27,7 +28,8 @@ export const EventManager: React.FC<Props> = ({
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
-  useTimelineEffect(resources, monthYear, tableId, flat)
+  const resourcesByEventTypes = useResourcesByEventTypes(resources)
+  useTimelineEffect(resourcesByEventTypes, monthYear, tableId, flat)
   const debouncedInputValue = useDebounce(inputValue, 300)
 
   useEffect(() => {
@@ -124,7 +126,7 @@ export const EventManager: React.FC<Props> = ({
             </tr>
           </thead>
           <tbody>
-            {resources.map((item) => (
+            {resourcesByEventTypes.map((item) => (
               <tr key={item.id} id={item.id}>
                 <td id={item.title}>{item.title}</td>
                 {daysInMonth.map(

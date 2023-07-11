@@ -61,34 +61,38 @@ $width: 200px;
     border-bottom: #e0e0e0 solid 2px;
   }
 
-  & tbody tr {
-    position: relative;
-  }
+  & tbody {
+    font-size: 14px;
 
-  & tbody .eventCell::before,
-  & tbody .eventCell::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #fafafa;
-  }
+    tr {
+      position: relative;
+    }
 
-  & tbody .eventCell::before {
-    top: 0;
-  }
+    & .eventCell::before,
+    & .eventCell::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #fafafa;
+    }
 
-  & tbody .eventCell::after {
-    bottom: 0;
+    & .eventCell::before {
+      top: 0;
+    }
+
+    & .eventCell::after {
+      bottom: 0;
+    }
   }
 }
 
 .eventCell {
   padding: 6px 0;
   color: transparent;
-  max-width: 12px;
-  max-height: 12px;
+  width: 14px;
+  height: 14px;
   font-size: 0;
 }
 

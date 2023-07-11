@@ -11,6 +11,12 @@ export const resources: Resource[] = [
         color: '#E6EE9C',
         title: 'Vacation',
       },
+      {
+        start: addDays(new Date(), -5),
+        end: addDays(new Date(), -1),
+        color: '#E6EE9C',
+        title: 'Vacation',
+      },
     ],
   },
   {
