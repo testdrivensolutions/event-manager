@@ -9,10 +9,10 @@ import {
   Props,
   isWeekend,
   useDebounce,
-  ClickData,
   useResourcesByEventTypes,
 } from '.'
 import styles from './styles.module.scss'
+import { EventCell } from './components'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -66,15 +66,6 @@ export const EventManager: React.FC<Props> = ({
     setMonthYear(date)
     setDaysInMonth(getDaysInMonth(date, hasWeekends))
     onUpdateDate(date)
-  }
-
-  const handleClick = (event: React.MouseEvent<HTMLTableCellElement>) => {
-    let data
-    const { textContent } = event.currentTarget
-    if (textContent && typeof textContent === 'string') {
-      data = JSON.parse(textContent) as ClickData
-    }
-    onClick(data)
   }
 
   const inculdeWeekends = (day: Date): boolean => {
@@ -132,12 +123,12 @@ export const EventManager: React.FC<Props> = ({
                 {daysInMonth.map(
                   (day) =>
                     inculdeWeekends(day) && (
-                      <td
+                      <EventCell
                         key={`${day.toDateString()}-${item.id}-${tableId}`}
                         id={`${day.toDateString()}-${item.id}-${tableId}`}
-                        className={styles.eventCell}
-                        onClick={handleClick}
-                      ></td>
+                        resource={item}
+                        onClick={onClick}
+                      ></EventCell>
                     ),
                 )}
               </tr>

@@ -18,6 +18,7 @@ $width: 200px;
   margin: 24px 24px 24px 24px;
   overflow-x: auto;
   border-radius: 5px;
+  max-height: 80vh;
 }
 
 .timelineHeadline {
@@ -63,37 +64,7 @@ $width: 200px;
 
   & tbody {
     font-size: 14px;
-
-    tr {
-      position: relative;
-    }
-
-    & .eventCell::before,
-    & .eventCell::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: #fafafa;
-    }
-
-    & .eventCell::before {
-      top: 0;
-    }
-
-    & .eventCell::after {
-      bottom: 0;
-    }
   }
-}
-
-.eventCell {
-  padding: 6px 0;
-  color: transparent;
-  width: 14px;
-  height: 14px;
-  font-size: 0;
 }
 
 .btn {

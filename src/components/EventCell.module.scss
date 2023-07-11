@@ -1,0 +1,40 @@
+.eventCell {
+  position: relative;
+  padding: 6px 0;
+  color: transparent;
+  width: 14px;
+  height: 14px;
+  font-size: 0;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #fafafa;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0.9;
+  z-index: 9999;
+}
