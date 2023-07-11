@@ -14,11 +14,11 @@ $width: 200px;
   font-family: 'Roboto', sans-serif;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   background-color: #fafafa;
-  padding: 18px 18px 18px 0;
-  margin: 24px 24px 24px 24px;
-  overflow-x: auto;
+  margin: 24px;
+  overflow: auto;
   border-radius: 5px;
-  max-height: 80vh;
+  width: 100%;
+  max-height: 90vh;
 }
 
 .timelineHeadline {
@@ -44,26 +44,30 @@ $width: 200px;
 
 .timelineTable {
   border-collapse: collapse;
-  margin-top: 36px;
 
   & th:first-child,
   & tr td:first-child {
     position: sticky;
     left: 0;
-    z-index: 1;
-    background-color: #fafafa; /* Set the background color as needed */
+    z-index: 10;
+    background-color: #fafafa;
     padding: 6px 32px;
     width: 100%;
     white-space: nowrap;
   }
 
   & th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     padding: 0 12px;
+    background-color: #fafafa;
     border-bottom: #e0e0e0 solid 2px;
   }
 
   & tbody {
     font-size: 14px;
+    max-height: 80vh;
   }
 }
 
