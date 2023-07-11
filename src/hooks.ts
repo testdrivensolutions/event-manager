@@ -16,9 +16,9 @@ export const useTimelineEffect = (
     resources.forEach((item) => {
       item.events.forEach((event) => {
         const range = getDatesInRange(event.start, event.end ?? event.start)
-        range.forEach((day, index, array) => {
+        range.forEach((eventDay, index, array) => {
           const durationCell = document.getElementById(
-            `${day.toDateString()}-${item.id}-${key}`,
+            `${eventDay.toDateString()}-${item.id}-${key}`,
           )
           if (durationCell) {
             durationCell.style.backgroundColor = event.color ?? ''
@@ -32,7 +32,7 @@ export const useTimelineEffect = (
               durationCell.style.borderTopRightRadius = '5px'
               durationCell.style.borderBottomRightRadius = '5px'
             }
-            if (isWeekend(day)) durationCell.style.opacity = '0.3'
+            if (isWeekend(eventDay)) durationCell.style.opacity = '0.3'
             const eventData = {
               event,
               resourceId: item.id.split('-')[0],
