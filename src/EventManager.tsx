@@ -111,17 +111,20 @@ export const EventManager: React.FC<Props> = ({
           <thead>
             <tr>
               <th>&nbsp;</th>
-              {daysInMonth.map((day) => (
-                <th key={day.toDateString()}>{formatDate(day)}</th>
-              ))}
+              {daysInMonth.map(
+                (day) =>
+                  inculdeWeekends(day) && (
+                    <th key={day.toDateString()}>{formatDate(day)}</th>
+                  ),
+              )}
             </tr>
           </thead>
           <tbody>
             {resourcesByEventTypes.map((item) => (
               <tr key={item.id} id={item.id}>
                 <td id={item.title}>{item.title}</td>
-                {daysInMonth.map(
-                  (day) =>
+                {daysInMonth.map((day) => {
+                  return (
                     inculdeWeekends(day) && (
                       <EventCell
                         key={`${day.toDateString()}-${item.id}-${tableId}`}
@@ -129,8 +132,9 @@ export const EventManager: React.FC<Props> = ({
                         resource={item}
                         onClick={onClick}
                       ></EventCell>
-                    ),
-                )}
+                    )
+                  )
+                })}
               </tr>
             ))}
           </tbody>
