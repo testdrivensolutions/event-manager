@@ -35,7 +35,7 @@ export const useTimelineEffect = (
             if (isWeekend(day)) durationCell.style.opacity = '0.3'
             const eventData = {
               event,
-              resourceId: item.id,
+              resourceId: item.id.split('-')[0],
             }
             durationCell.textContent = JSON.stringify(eventData)
           }
