@@ -20,7 +20,6 @@ function App() {
       <EventManager
         resources={resources}
         tableId={1}
-        hasWeekends
         searchable
         onSearch={handleSearch}
         onClick={handleClick}
@@ -30,6 +29,7 @@ function App() {
       <EventManager
         resources={resources}
         tableId={2}
+        hasWeekends
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
         flat
