@@ -16,6 +16,9 @@ No dependancies used
 
 ![alt text](https://github.com/jurisbandenieks/event-manager/blob/HEAD/images/event-manager.png)
 
+- This component provides tools for firing events but does not handle data processing.
+- It is the responsibility of the user to determine how to interact with the data during these events.
+
 ## Used Types
 
 ```
