@@ -14,7 +14,6 @@ export const EventCell: React.FC<EventCellProps> = ({ id, onClick }) => {
   const handleClick = (event: React.MouseEvent<HTMLTableCellElement>) => {
     let data
     const { textContent } = event.currentTarget
-    console.log(textContent)
     if (textContent && typeof textContent === 'string') {
       data = JSON.parse(textContent) as ClickData
     }
