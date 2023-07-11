@@ -4,6 +4,13 @@ const getRandomInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+const eventTypeLib = [
+  { label: 'Sick Day', color: '#EF5350' },
+  { label: 'Personal Day', color: '#26A69A' },
+  { label: 'Anuall leave', color: '#FFA726' },
+  { label: 'Orher', color: '#42A5F5' },
+]
+
 export const generateResources = (): Resource[] => {
   const resources: Resource[] = []
 
@@ -17,10 +24,11 @@ export const generateResources = (): Resource[] => {
     const eventCount = getRandomInt(1, 5)
 
     for (let j = 0; j < eventCount; j++) {
+      const type = eventTypeLib[getRandomInt(0, 3)]
       const start = addDays(new Date(), getRandomInt(-20, 10))
       const end = addDays(start, getRandomInt(1, 24))
-      const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`
-      const title = `Event ${j + 1}`
+      const color = type.color
+      const title = type.label
 
       const event: Event = {
         start,
