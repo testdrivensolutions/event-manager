@@ -21,6 +21,7 @@ function App() {
         resources={resources}
         tableId={1}
         searchable
+        showLegend
         onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
