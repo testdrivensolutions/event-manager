@@ -1,4 +1,4 @@
-import { Key, useEffect, useState } from 'react'
+import { Key, useEffect, useMemo, useState } from 'react'
 import { Event, MonthYear, Resource, getDatesInRange, isWeekend } from '.'
 
 export const useTimelineEffect = (
@@ -42,7 +42,7 @@ export const useTimelineEffect = (
         })
       })
     })
-  }, [resources, monthYear])
+  }, [monthYear])
 }
 
 export const useDebounce = <T>(value: T, delay: number): T => {
@@ -66,7 +66,7 @@ export const useResourcesByEventTypes = (resources: Resource[]): Resource[] => {
     Resource[]
   >([])
 
-  useEffect(() => {
+  useMemo(() => {
     const newMappedResources = resources.flatMap((resource) => {
       const eventsByType: {
         [title: string]: { title: string; events: Event[] }
