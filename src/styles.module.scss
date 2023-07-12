@@ -18,13 +18,9 @@ $width: 200px;
   overflow: auto;
   border-radius: 5px;
   width: 100%;
-  max-height: 90vh;
 }
 
 .timelineHeadline {
-  position: sticky;
-  left: 0;
-  z-index: 1;
   width: auto;
   display: flex;
   justify-content: space-between;
@@ -42,6 +38,10 @@ $width: 200px;
   }
 }
 
+.tableContainer {
+  max-height: 80vh;
+}
+
 .timelineTable {
   border-collapse: collapse;
 
@@ -52,7 +52,6 @@ $width: 200px;
     z-index: 10;
     background-color: #fafafa;
     padding: 6px 32px;
-    width: 100%;
     white-space: nowrap;
     max-width: 200px;
     overflow: hidden;

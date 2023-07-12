@@ -12,7 +12,8 @@ import {
   useResourcesByEventTypes,
 } from '.'
 import styles from './styles.module.scss'
-import { EventCell } from './components'
+import { EventCell } from './components/EventCell'
+import { Legend } from './components/Legend'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -20,6 +21,7 @@ export const EventManager: React.FC<Props> = ({
   hasWeekends = false,
   searchable = false,
   flat = false,
+  showLegend = false,
   onSearch,
   onClick,
   onUpdateDate,
@@ -107,38 +109,41 @@ export const EventManager: React.FC<Props> = ({
             </button>
           </div>
         </div>
-        <table className={styles.timelineTable}>
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              {daysInMonth.map(
-                (day) =>
-                  inculdeWeekends(day) && (
-                    <th key={day.toDateString()}>{formatDate(day)}</th>
-                  ),
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {resourcesByEventTypes.map((item) => (
-              <tr key={item.id} id={item.id}>
-                <td id={item.title}>{item.title}</td>
-                {daysInMonth.map((day) => {
-                  return (
+        <div className={styles.tableContainer}>
+          <table className={styles.timelineTable}>
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                {daysInMonth.map(
+                  (day) =>
                     inculdeWeekends(day) && (
-                      <EventCell
-                        key={`${day.toDateString()}-${item.id}-${tableId}`}
-                        id={`${day.toDateString()}-${item.id}-${tableId}`}
-                        resource={item}
-                        onClick={onClick}
-                      ></EventCell>
-                    )
-                  )
-                })}
+                      <th key={day.toDateString()}>{formatDate(day)}</th>
+                    ),
+                )}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {resourcesByEventTypes.map((item) => (
+                <tr key={item.id} id={item.id}>
+                  <td id={item.title}>{item.title}</td>
+                  {daysInMonth.map((day) => {
+                    return (
+                      inculdeWeekends(day) && (
+                        <EventCell
+                          key={`${day.toDateString()}-${item.id}-${tableId}`}
+                          id={`${day.toDateString()}-${item.id}-${tableId}`}
+                          resource={item}
+                          onClick={onClick}
+                        ></EventCell>
+                      )
+                    )
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {showLegend && <Legend />}
       </div>
     </>
   )
