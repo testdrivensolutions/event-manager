@@ -76,9 +76,10 @@ handleUpdateDate(data: MonthYear) => void
 Props = {
   resources: Resource[]
   tableId: ID
-  hasWeekends?: boolean
-  searchable?: boolean
-  flat?: boolean
+  hasWeekends?: boolean // default false
+  searchable?: boolean // default false
+  flat?: boolean // default false
+  showLegend?: boolean // default false
   onSearch?: (text: string) => void
   onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void
