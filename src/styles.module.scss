@@ -11,7 +11,6 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   background-color: #fafafa;
   margin: 24px 0;
-  overflow: auto;
   border-radius: 5px;
   width: 100%;
 }
@@ -27,6 +26,7 @@
 
 .tableContainer {
   max-height: 80vh;
+  overflow: auto;
 }
 
 .timelineTable {
