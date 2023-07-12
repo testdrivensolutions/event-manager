@@ -54,6 +54,9 @@ $width: 200px;
     padding: 6px 32px;
     width: 100%;
     white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   & th {
