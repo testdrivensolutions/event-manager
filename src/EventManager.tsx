@@ -86,7 +86,7 @@ export const EventManager: React.FC<Props> = ({
             </tbody>
           </table>
         </div>
-        {/* {showLegend && <Legend />} */}
+        {showLegend && <Legend resources={resources} />}
       </div>
     </>
   )
