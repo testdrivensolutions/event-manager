@@ -11,9 +11,7 @@ import {
   useResourcesByEventTypes,
 } from '.'
 import styles from './styles.module.scss'
-import { EventCell } from './components/EventCell'
-import { Legend } from './components/Legend'
-import { TextInput } from './components/TextInput'
+import { Actions, EventCell, Legend, TextInput } from './components'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -32,31 +30,7 @@ export const EventManager: React.FC<Props> = ({
   const resourcesByEventTypes = useResourcesByEventTypes(resources)
   useTimelineEffect(resourcesByEventTypes, monthYear, tableId, flat)
 
-  const handleBack = () => {
-    let date
-    if (monthYear.month <= 1) {
-      date = { month: 12, year: monthYear.year - 1 }
-    } else {
-      date = { ...monthYear, month: monthYear.month - 1 }
-    }
-    updateDate(date)
-  }
-
-  const handleForward = () => {
-    let date
-    if (monthYear.month >= 12) {
-      date = { month: 1, year: monthYear.year + 1 }
-    } else {
-      date = { ...monthYear, month: monthYear.month + 1 }
-    }
-    updateDate(date)
-  }
-
-  const handleToday = () => {
-    updateDate()
-  }
-
-  const updateDate = (date: MonthYear = getYearAndMonth()) => {
+  const updateDate = (date: MonthYear) => {
     setMonthYear(date)
     setDaysInMonth(getDaysInMonth(date, hasWeekends))
     onUpdateDate(date)
@@ -76,17 +50,7 @@ export const EventManager: React.FC<Props> = ({
         <div className={styles.timelineHeadline}>
           {searchable && <TextInput onSearch={onSearch} />}
           <div>{formatMonthYear(monthYear)}</div>
-          <div className={styles.timelineActions}>
-            <button className={styles.btn} onClick={handleBack}>
-              {'<'}
-            </button>
-            <button className={styles.btn} onClick={handleToday}>
-              Today
-            </button>
-            <button className={styles.btn} onClick={handleForward}>
-              {'>'}
-            </button>
-          </div>
+          <Actions monthYear={monthYear} onUpdate={updateDate} />
         </div>
         <div className={styles.tableContainer}>
           <table className={styles.timelineTable}>
