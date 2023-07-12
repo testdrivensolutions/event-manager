@@ -63,9 +63,10 @@ handleUpdateDate(data: MonthYear) => void
 <EventManager
   resources={resources}
   tableId={1}
-  hasWeekends={false}
-  searchable={true}
-  flat={true}
+  hasWeekends
+  searchable
+  flat
+  showLegend
   onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
