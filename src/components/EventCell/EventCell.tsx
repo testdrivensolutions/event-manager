@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './EventCell.module.scss'
-import { ClickData, Resource } from '../types'
+import { ClickData, Resource } from '../../types'
 
 type EventCellProps = {
   resource: Resource

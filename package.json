@@ -2,7 +2,9 @@
   "name": "@event-manager/react",
   "version": "0.3.7",
   "description": "Event manager component for react",
-  "author": "Juris Bandenieks <jurisbandenieks90@gmail.com",
+  "author": "Juris Bandenieks",
+  "email": "bandenieks.juris@gmail.com",
+  "url": "juris.band",
   "license": "MIT",
   "keywords": [
     "react",
