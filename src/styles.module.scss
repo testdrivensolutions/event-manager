@@ -13,6 +13,7 @@
   margin: 24px 0;
   border-radius: 5px;
   width: 100%;
+  max-height: calc(100vh - (2 * 24px));
 }
 
 .timelineHeadline {
@@ -25,7 +26,7 @@
 }
 
 .tableContainer {
-  max-height: 80vh;
+  max-height: 80%;
   margin: 0 auto;
   overflow: auto;
 }
