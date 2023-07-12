@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   formatDate,
   getDaysInMonth,
@@ -8,12 +8,12 @@ import {
   MonthYear,
   Props,
   isWeekend,
-  useDebounce,
   useResourcesByEventTypes,
 } from '.'
 import styles from './styles.module.scss'
 import { EventCell } from './components/EventCell'
 import { Legend } from './components/Legend'
+import { TextInput } from './components/TextInput'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -26,19 +26,11 @@ export const EventManager: React.FC<Props> = ({
   onClick,
   onUpdateDate,
 }) => {
-  const [inputValue, setInputValue] = useState('')
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   const resourcesByEventTypes = useResourcesByEventTypes(resources)
   useTimelineEffect(resourcesByEventTypes, monthYear, tableId, flat)
-  const debouncedInputValue = useDebounce(inputValue, 300)
-
-  useEffect(() => {
-    if (onSearch) {
-      onSearch(inputValue)
-    }
-  }, [debouncedInputValue])
 
   const handleBack = () => {
     let date
@@ -75,12 +67,6 @@ export const EventManager: React.FC<Props> = ({
     return !hasWeekends && !isWeekend(day)
   }
 
-  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (searchable) {
-      setInputValue(event.target.value)
-    }
-  }
-
   return (
     <>
       <div
@@ -88,14 +74,7 @@ export const EventManager: React.FC<Props> = ({
         id={`${tableId} timeline-container`}
       >
         <div className={styles.timelineHeadline}>
-          {searchable && (
-            <div className={styles.inputGroup}>
-              <input type='text' required onChange={handleInput} />
-              <span className='highlight'></span>
-              <span className='bar'></span>
-              <label>Search</label>
-            </div>
-          )}
+          {searchable && <TextInput onSearch={onSearch} />}
           <div>{formatMonthYear(monthYear)}</div>
           <div className={styles.timelineActions}>
             <button className={styles.btn} onClick={handleBack}>
