@@ -24,13 +24,20 @@ export const Pagination: React.FC<Props> = ({
   const renderPages = () => {
     const pages = []
 
-    const min = Math.min(maxLength, page.total)
+    let startPage = Math.max(1, page.current - Math.floor(maxLength / 2))
+    let endPage = Math.min(page.total, startPage + maxLength - 1)
+    // Adjust startPage and endPage if there are fewer pages than visiblePages
+    if (endPage - startPage + 1 < maxLength) {
+      startPage = Math.max(1, endPage - maxLength + 1)
+    }
 
-    for (let i = 1; i <= min; i++) {
+    // Add page numbers to the array
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(i)
     }
 
-    if (pages.length < page.total) {
+    // Add the last page
+    if (endPage < page.total) {
       pages.push(page.total)
     }
 
