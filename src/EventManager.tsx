@@ -17,7 +17,7 @@ import { Pagination } from './components/Pagination'
 export const EventManager: React.FC<Props> = ({
   resources,
   tableId,
-  page = { current: 1, size: 10, total: Math.ceil(resources.length / 10) },
+  page,
   hasWeekends = false,
   searchable = false,
   flat = false,
@@ -99,11 +99,7 @@ export const EventManager: React.FC<Props> = ({
         </div>
         <div className={styles.footer}>
           {showLegend && <Legend resources={resources} />}
-          <Pagination
-            resources={resources}
-            page={page}
-            onPageChange={onPageChange}
-          />
+          <Pagination page={page} onPageChange={onPageChange} />
         </div>
       </div>
     </>
