@@ -1,12 +1,22 @@
 import { Key, useEffect, useMemo, useState } from 'react'
 import { Event, MonthYear, Resource, getDatesInRange, isWeekend } from '.'
+import { createTooltip } from './components'
 
-export const useTimelineEffect = (
-  resources: Resource[],
-  monthYear: MonthYear,
-  key: Key,
-  flat: boolean,
-) => {
+type TimelineProps = {
+  resources: Resource[]
+  monthYear: MonthYear
+  key: Key
+  flat: boolean
+  showTooltip: boolean
+}
+
+export const useTimelineEffect = ({
+  resources,
+  monthYear,
+  key,
+  flat,
+  showTooltip,
+}: TimelineProps) => {
   useEffect(() => {
     if (flat) {
       const eventTable = document.getElementById(`${key} timeline-container`)
@@ -37,7 +47,11 @@ export const useTimelineEffect = (
               event,
               resourceId: item.id.split('-')[0],
             }
+
             durationCell.textContent = JSON.stringify(eventData)
+            if (showTooltip) {
+              createTooltip(durationCell, { label: item.label ?? '', event })
+            }
           }
         })
       })
@@ -87,6 +101,7 @@ export const useResourcesByEventTypes = (resources: Resource[]): Resource[] => {
         mappedEvents.push({
           id: uniqueId,
           title: suffix === 1 ? resource.title : '',
+          label: resource.title,
           events: eventsByType[type].events,
         })
         suffix++

@@ -34,6 +34,7 @@ Event {
 Resource {
   id: string
   title: string
+  label?: string
   events: Event[]
 }
 ```
@@ -67,6 +68,7 @@ handleUpdateDate(data: MonthYear) => void
   searchable
   flat
   showLegend
+  showTooltip
   onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
@@ -81,6 +83,7 @@ Props = {
   searchable?: boolean // default false
   flat?: boolean // default false
   showLegend?: boolean // default false
+  showTooltip?: boolean // default false
   onSearch?: (text: string) => void
   onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void

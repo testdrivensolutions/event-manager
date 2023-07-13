@@ -20,6 +20,7 @@ export const EventManager: React.FC<Props> = ({
   searchable = false,
   flat = false,
   showLegend = false,
+  showTooltip = false,
   onSearch,
   onClick,
   onUpdateDate,
@@ -28,7 +29,13 @@ export const EventManager: React.FC<Props> = ({
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   const resourcesByEventTypes = useResourcesByEventTypes(resources)
-  useTimelineEffect(resourcesByEventTypes, monthYear, tableId, flat)
+  useTimelineEffect({
+    resources: resourcesByEventTypes,
+    monthYear,
+    key: tableId,
+    flat,
+    showTooltip,
+  })
 
   const updateDate = (date: MonthYear) => {
     setMonthYear(date)

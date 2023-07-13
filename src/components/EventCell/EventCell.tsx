@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './EventCell.module.scss'
 import { ClickData, Resource } from '../../types'
 
@@ -9,8 +9,6 @@ type EventCellProps = {
 }
 
 export const EventCell: React.FC<EventCellProps> = ({ id, onClick }) => {
-  const [showTooltip, setShowTooltip] = useState(false)
-
   const handleClick = (event: React.MouseEvent<HTMLTableCellElement>) => {
     let data
     const { textContent } = event.currentTarget
@@ -20,15 +18,7 @@ export const EventCell: React.FC<EventCellProps> = ({ id, onClick }) => {
     onClick(data)
   }
 
-  return (
-    <td
-      id={id}
-      className={styles.eventCell}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
-      onClick={handleClick}
-    ></td>
-  )
+  return <td id={id} className={styles.eventCell} onClick={handleClick}></td>
 }
 
 export default EventCell
