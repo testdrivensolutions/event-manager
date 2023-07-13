@@ -1,5 +1,5 @@
 import { Key, useEffect, useMemo, useState } from 'react'
-import { Event, MonthYear, Resource, getDatesInRange, isWeekend } from '.'
+import { Event, MonthYear, Page, Resource, getDatesInRange, isWeekend } from '.'
 import { createTooltip } from './components'
 
 type TimelineProps = {
@@ -8,6 +8,7 @@ type TimelineProps = {
   key: Key
   flat: boolean
   showTooltip: boolean
+  page: Page
 }
 
 export const useTimelineEffect = ({
@@ -16,6 +17,7 @@ export const useTimelineEffect = ({
   key,
   flat,
   showTooltip,
+  page,
 }: TimelineProps) => {
   useEffect(() => {
     if (flat) {
@@ -56,7 +58,7 @@ export const useTimelineEffect = ({
         })
       })
     })
-  }, [monthYear])
+  }, [monthYear, page])
 }
 
 export const useDebounce = <T>(value: T, delay: number): T => {
