@@ -53,55 +53,53 @@ export const EventManager: React.FC<Props> = ({
   }
 
   return (
-    <>
-      <div
-        className={styles.timelineContainer}
-        id={`${tableId} timeline-container`}
-      >
-        <div className={styles.timelineHeadline}>
-          {searchable && <TextInput onSearch={onSearch} />}
-          <div>{formatMonthYear(monthYear)}</div>
-          <Actions monthYear={monthYear} onUpdate={updateDate} />
-        </div>
-        <div className={styles.tableContainer}>
-          <table className={styles.timelineTable}>
-            <thead>
-              <tr>
-                <th>&nbsp;</th>
-                {daysInMonth.map(
-                  (day) =>
-                    inculdeWeekends(day) && (
-                      <th key={day.toDateString()}>{formatDate(day)}</th>
-                    ),
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {resourcesByEventTypes.map((item) => (
-                <tr key={item.id} id={item.id}>
-                  <td id={item.title}>{item.title}</td>
-                  {daysInMonth.map((day) => {
-                    return (
-                      inculdeWeekends(day) && (
-                        <EventCell
-                          key={`${day.toDateString()}-${item.id}-${tableId}`}
-                          id={`${day.toDateString()}-${item.id}-${tableId}`}
-                          resource={item}
-                          onClick={onClick}
-                        ></EventCell>
-                      )
-                    )
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className={styles.footer}>
-          {showLegend && <Legend resources={resources} />}
-          <Pagination page={page} onPageChange={onPageChange} />
-        </div>
+    <div
+      className={styles.timelineContainer}
+      id={`${tableId} timeline-container`}
+    >
+      <div className={styles.timelineHeadline}>
+        {searchable && <TextInput onSearch={onSearch} />}
+        <div>{formatMonthYear(monthYear)}</div>
+        <Actions monthYear={monthYear} onUpdate={updateDate} />
       </div>
-    </>
+      <div className={styles.tableContainer}>
+        <table className={styles.timelineTable}>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              {daysInMonth.map(
+                (day) =>
+                  inculdeWeekends(day) && (
+                    <th key={day.toDateString()}>{formatDate(day)}</th>
+                  ),
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {resourcesByEventTypes.map((item) => (
+              <tr key={item.id} id={item.id}>
+                <td id={item.title}>{item.title}</td>
+                {daysInMonth.map((day) => {
+                  return (
+                    inculdeWeekends(day) && (
+                      <EventCell
+                        key={`${day.toDateString()}-${item.id}-${tableId}`}
+                        id={`${day.toDateString()}-${item.id}-${tableId}`}
+                        resource={item}
+                        onClick={onClick}
+                      ></EventCell>
+                    )
+                  )
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className={styles.footer}>
+        {showLegend && <Legend resources={resources} />}
+        <Pagination page={page} onPageChange={onPageChange} />
+      </div>
+    </div>
   )
 }
