@@ -6,7 +6,8 @@ function App() {
   const [page, setPage] = useState<Page>({
     current: 1,
     size: 10,
-    total: Math.ceil(resources.length / 10),
+    count: Math.ceil(resources.length / 10),
+    total: resources.length,
   })
   const [data, setData] = useState<Resource[]>([])
 

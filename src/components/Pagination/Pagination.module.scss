@@ -1,6 +1,8 @@
 .pagination {
+  margin: 12px 0 0;
   padding: 24px;
   display: flex;
+  align-items: center;
 }
 
 .navigation {
@@ -20,5 +22,111 @@
   background-color: #e0e0e0;
 }
 
-.selection {
+.select {
+  position: relative;
+  margin: 0 0 0 24px;
+  width: 100px;
+}
+
+.selectText {
+  position: relative;
+  font-family: inherit;
+  background-color: transparent;
+  width: 100px;
+  padding: 10px 10px 10px 0;
+  font-size: 14px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* Remove focus */
+.selectText:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+/* Use custom arrow */
+.select .selectText {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.select:after {
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  /* Styling the down arrow */
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+
+/* LABEL ======================================= */
+.selectLabel {
+  color: rgba(0, 0, 0, 0.26);
+  font-size: 12px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+
+/* active state */
+.selectText:focus ~ .selectLabel,
+.selectText:valid ~ .selectLabel {
+  color: #2f80ed;
+  top: -20px;
+  transition: 0.2s ease all;
+  font-size: 12px;
+}
+
+/* BOTTOM BARS ================================= */
+.selectBar {
+  position: relative;
+  display: block;
+  width: 100px;
+}
+
+.selectBar:before,
+.selectBar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #2f80ed;
+  transition: 0.2s ease all;
+}
+
+.selectBar:before {
+  left: 50%;
+}
+
+.selectBar:after {
+  right: 50%;
+}
+
+/* active state */
+.selectText:focus ~ .selectBar:before,
+.selectText:focus ~ .selectBar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.selectHighlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
 }

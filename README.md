@@ -19,6 +19,55 @@ No dependancies used
 - This component provides tools for firing events but does not handle data processing.
 - It is the responsibility of the user to determine how to interact with the data during these events.
 
+```
+function App() {
+  const [page, setPage] = useState<Page>({
+    current: 1,
+    size: 10,
+    count: Math.ceil(resources.length / 10),
+    total: resources.length,
+  })
+  const [data, setData] = useState<Resource[]>([])
+
+  useMemo(() => {
+    const data = resources.slice(
+      (page.current - 1) * page.size,
+      page.current * page.size,
+    )
+    setData(data)
+  }, [page])
+
+  const handleClick = (data: ClickData | undefined) => {
+    console.log(data)
+  }
+
+  const handleUpdateDate = (date: MonthYear) => {
+    console.log(date)
+  }
+
+  const handleSearch = (text: string) => {
+    console.log(text)
+  }
+
+  return (
+    <div className='app'>
+      <EventManager
+        resources={data}
+        tableId={1}
+        page={page}
+        searchable
+        showLegend
+        showTooltip
+        onPageChange={setPage}
+        onSearch={handleSearch}
+        onClick={handleClick}
+        onUpdateDate={handleUpdateDate}
+      />
+    </div>
+  )
+}
+```
+
 ## Used Types
 
 ```
@@ -54,6 +103,19 @@ ClickData = {
 ```
 
 ```
+ID = number | string
+```
+
+```
+Page = {
+current: number
+size: number
+count: number
+total: number
+}
+```
+
+```
 handleClick(data: ClickData | undefined) => void
 handleUpdateDate(data: MonthYear) => void
 ```
@@ -77,15 +139,17 @@ handleUpdateDate(data: MonthYear) => void
 
 ```
 Props = {
-  resources: Resource[]
-  tableId: ID
-  hasWeekends?: boolean // default false
-  searchable?: boolean // default false
-  flat?: boolean // default false
-  showLegend?: boolean // default false
-  showTooltip?: boolean // default false
-  onSearch?: (text: string) => void
-  onClick: (data: ClickData | undefined) => void
-  onUpdateDate: (date: MonthYear) => void
+resources: Resource[]
+tableId: ID
+page: Page
+hasWeekends?: boolean // default false
+searchable?: boolean // default false
+flat?: boolean // default false
+showLegend?: boolean // default false
+showTooltip?: boolean // default false
+onPageChange: (page: Page) => void
+onSearch?: (text: string) => void
+onClick: (data: ClickData | undefined) => void
+onUpdateDate: (date: MonthYear) => void
 }
 ```

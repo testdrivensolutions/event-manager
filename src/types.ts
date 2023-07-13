@@ -27,6 +27,7 @@ export type ID = number | string
 export type Page = {
   current: number
   size: number
+  count: number
   total: number
 }
 
