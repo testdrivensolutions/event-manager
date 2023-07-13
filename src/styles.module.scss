@@ -27,6 +27,7 @@
 
 .tableContainer {
   max-height: 80%;
+  width: 100%;
   margin: 0 auto;
   overflow: auto;
 }
@@ -60,4 +61,10 @@
     font-size: 14px;
     max-height: 80vh;
   }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
