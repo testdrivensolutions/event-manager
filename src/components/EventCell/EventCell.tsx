@@ -13,7 +13,7 @@ export const EventCell: React.FC<EventCellProps> = ({ id, onClick }) => {
     let data
     const { textContent } = event.currentTarget
     if (textContent && typeof textContent === 'string') {
-      data = JSON.parse(textContent) as ClickData
+      data = JSON.parse(textContent.split('\n')[0]) as ClickData
     }
     onClick(data)
   }

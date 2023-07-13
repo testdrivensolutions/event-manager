@@ -22,7 +22,6 @@ function App() {
         tableId={1}
         searchable
         showLegend
-        showTooltip
         onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
