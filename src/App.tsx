@@ -10,6 +10,7 @@ function App() {
     total: resources.length,
   })
   const [data, setData] = useState<Resource[]>([])
+  const [loading, setLoading] = useState(false)
 
   useMemo(() => {
     const data = resources.slice(
@@ -40,6 +41,7 @@ function App() {
         searchable
         showLegend
         showTooltip
+        loading={loading}
         onPageChange={setPage}
         onSearch={handleSearch}
         onClick={handleClick}

@@ -131,6 +131,7 @@ handleUpdateDate(data: MonthYear) => void
   flat
   showLegend
   showTooltip
+  loading={loading}
   onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
@@ -147,6 +148,7 @@ searchable?: boolean // default false
 flat?: boolean // default false
 showLegend?: boolean // default false
 showTooltip?: boolean // default false
+loading?: boolean // default false
 onPageChange: (page: Page) => void
 onSearch?: (text: string) => void
 onClick: (data: ClickData | undefined) => void

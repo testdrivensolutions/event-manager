@@ -13,6 +13,7 @@ import {
 import styles from './styles.module.scss'
 import { Actions, EventCell, Legend, TextInput } from './components'
 import { Pagination } from './components/Pagination'
+import { Loading } from './components/Loading/Loading'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -23,6 +24,7 @@ export const EventManager: React.FC<Props> = ({
   flat = false,
   showLegend = false,
   showTooltip = false,
+  loading = false,
   onSearch,
   onClick,
   onUpdateDate,
@@ -62,40 +64,46 @@ export const EventManager: React.FC<Props> = ({
         <div>{formatMonthYear(monthYear)}</div>
         <Actions monthYear={monthYear} onUpdate={updateDate} />
       </div>
-      <div className={styles.tableContainer}>
-        <table className={styles.timelineTable}>
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              {daysInMonth.map(
-                (day) =>
-                  inculdeWeekends(day) && (
-                    <th key={day.toDateString()}>{formatDate(day)}</th>
-                  ),
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {resourcesByEventTypes.map((item) => (
-              <tr key={item.id} id={item.id}>
-                <td id={item.title}>{item.title}</td>
-                {daysInMonth.map((day) => {
-                  return (
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className={styles.tableContainer}>
+          <table className={styles.timelineTable}>
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                {daysInMonth.map(
+                  (day) =>
                     inculdeWeekends(day) && (
-                      <EventCell
-                        key={`${day.toDateString()}-${item.id}-${tableId}`}
-                        id={`${day.toDateString()}-${item.id}-${tableId}`}
-                        resource={item}
-                        onClick={onClick}
-                      ></EventCell>
-                    )
-                  )
-                })}
+                      <th key={day.toDateString()}>{formatDate(day)}</th>
+                    ),
+                )}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {resourcesByEventTypes.map((item) => (
+                <tr key={item.id} id={item.id}>
+                  <td id={item.title}>{item.title}</td>
+                  {daysInMonth.map((day) => {
+                    return (
+                      inculdeWeekends(day) && (
+                        <EventCell
+                          key={`${day.toDateString()}-${item.id}-${tableId}`}
+                          id={`${day.toDateString()}-${item.id}-${tableId}`}
+                          resource={item}
+                          onClick={onClick}
+                        ></EventCell>
+                      )
+                    )
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       <div className={styles.footer}>
         {showLegend && <Legend resources={resources} />}
         <Pagination page={page} onPageChange={onPageChange} />

@@ -40,6 +40,7 @@ export type Props = {
   flat?: boolean // default false
   showLegend?: boolean // default false
   showTooltip?: boolean // default false
+  loading?: boolean // default false
   onPageChange: (page: Page) => void
   onSearch?: (text: string) => void
   onClick: (data: ClickData | undefined) => void
