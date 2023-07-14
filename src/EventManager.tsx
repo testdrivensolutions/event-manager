@@ -57,7 +57,7 @@ export const EventManager: React.FC<Props> = ({
     >
       <div className={styles.timelineHeadline}>
         {search}
-        <div>{formatMonthYear(monthYear)}</div>
+        <div className={styles.monthYear}>{formatMonthYear(monthYear)}</div>
         <Actions monthYear={monthYear} onUpdate={updateDate} />
       </div>
 

@@ -22,19 +22,26 @@
   padding: 0 24px;
   font-weight: 500;
 
-  @include respond(tab-port) {
+  @include respond(phone) {
     padding: 0 0 12px;
     flex-direction: column;
   }
+
+  @include respond(tab-port) {
+    margin: 0 0 12px;
+  }
+}
+
+.monthYear {
+  margin: 12px 0 0;
 }
 
 .tableContainer {
-  max-height: 80%;
+  height: 80%;
   width: 100%;
   margin: 0 auto;
   overflow: auto;
   display: flex;
-  justify-content: center;
 }
 
 .timelineTable {
@@ -47,11 +54,16 @@
     left: 0;
     z-index: 10;
     background-color: $color-light;
-    padding: 6px 32px;
+    padding: 6px 24px;
     white-space: nowrap;
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @include respond(phone) {
+      max-width: 100px;
+      padding: 6px 12px;
+    }
   }
 
   & th {
