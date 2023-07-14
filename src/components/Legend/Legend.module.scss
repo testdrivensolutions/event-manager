@@ -1,7 +1,6 @@
 @import '../../sass/main.scss';
 
 .legend {
-  padding: 24px;
   display: flex;
 
   @include respond(tab-port) {
