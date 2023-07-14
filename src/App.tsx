@@ -12,6 +12,8 @@ function App() {
   const [data, setData] = useState<Resource[]>([])
   const [loading, setLoading] = useState(false)
 
+  // This can be any async fetch function
+  // This function is triggered my page change
   useMemo(() => {
     setLoading(true)
     setTimeout(() => {
@@ -36,6 +38,11 @@ function App() {
     console.log(text)
   }
 
+  const handlePageChange = (page: Page) => {
+    setPage(page)
+    console.log(page)
+  }
+
   return (
     <div className='app'>
       <EventManager
@@ -46,7 +53,7 @@ function App() {
         showLegend
         showTooltip
         loading={loading}
-        onPageChange={setPage}
+        onPageChange={handlePageChange}
         onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}

@@ -28,13 +28,20 @@ function App() {
     total: resources.length,
   })
   const [data, setData] = useState<Resource[]>([])
+  const [loading, setLoading] = useState(false)
 
+  // This can be any async fetch function
+  // This function is triggered my page change
   useMemo(() => {
-    const data = resources.slice(
-      (page.current - 1) * page.size,
-      page.current * page.size,
-    )
-    setData(data)
+    setLoading(true)
+    setTimeout(() => {
+      const data = resources.slice(
+        (page.current - 1) * page.size,
+        page.current * page.size,
+      )
+      setData(data)
+      setLoading(false)
+    }, 500)
   }, [page])
 
   const handleClick = (data: ClickData | undefined) => {
@@ -49,6 +56,11 @@ function App() {
     console.log(text)
   }
 
+  const handlePageChange = (page: Page) => {
+    setPage(page)
+    console.log(page)
+  }
+
   return (
     <div className='app'>
       <EventManager
@@ -58,7 +70,8 @@ function App() {
         searchable
         showLegend
         showTooltip
-        onPageChange={setPage}
+        loading={loading}
+        onPageChange={handlePageChange}
         onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
