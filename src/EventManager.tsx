@@ -12,22 +12,20 @@ import {
 } from '.'
 import styles from './styles.module.scss'
 import { Actions, EventCell, Legend } from './components'
-import { Pagination } from './components/Pagination'
 import { Loading } from './components/Loading/Loading'
 
 export const EventManager: React.FC<Props> = ({
   resources,
   tableId,
-  page,
   hasWeekends = false,
   flat = false,
   showLegend = false,
   showTooltip = false,
   loading = false,
   search = null,
+  pagination = null,
   onClick,
   onUpdateDate,
-  onPageChange,
 }) => {
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
@@ -39,7 +37,6 @@ export const EventManager: React.FC<Props> = ({
     key: tableId,
     flat,
     showTooltip,
-    page,
   })
 
   const updateDate = (date: MonthYear) => {
@@ -105,7 +102,7 @@ export const EventManager: React.FC<Props> = ({
 
       <div className={styles.footer}>
         {showLegend && <Legend resources={resources} />}
-        <Pagination page={page} onPageChange={onPageChange} />
+        {pagination}
       </div>
     </div>
   )
