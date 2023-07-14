@@ -67,7 +67,13 @@ function App() {
         resources={data}
         tableId={1}
         page={page}
-        searchable
+        search={
+          <TextField
+            variant='standard'
+            label='Search'
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+        }
         showLegend
         showTooltip
         loading={loading}
@@ -137,14 +143,20 @@ handleUpdateDate(data: MonthYear) => void
 
 ```
 <EventManager
-  resources={resources}
+  resources={data}
   tableId={1}
-  hasWeekends
-  searchable
-  flat
+  page={page}
+  search={
+    <TextField
+      variant='standard'
+      label='Search'
+      onChange={(e) => handleSearch(e.target.value)}
+    />
+  }
   showLegend
   showTooltip
   loading={loading}
+  onPageChange={handlePageChange}
   onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}

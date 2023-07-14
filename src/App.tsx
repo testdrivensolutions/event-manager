@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { resources } from './data'
 import { MonthYear, EventManager, ClickData, Page, Resource } from './'
-import { TextField } from '@mui/material'
 
 function App() {
   const [page, setPage] = useState<Page>({
@@ -50,13 +49,6 @@ function App() {
         resources={data}
         tableId={1}
         page={page}
-        search={
-          <TextField
-            variant='standard'
-            label='Search'
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-        }
         showLegend
         showTooltip
         loading={loading}
