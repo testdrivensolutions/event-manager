@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './Actions.module.scss'
 import { MonthYear } from '../../types'
 import { getYearAndMonth } from '../../utils'
+import back from '../../assets/navigate_before.svg'
+import next from '../../assets/navigate_next.svg'
 
 type Props = {
   monthYear: MonthYear
@@ -36,13 +38,13 @@ export const Actions: React.FC<Props> = ({ monthYear, onUpdate }) => {
   return (
     <div className={styles.timelineActions}>
       <button className={styles.btn} onClick={handleBack}>
-        {'<'}
+        <img src={back} alt='<' />
       </button>
       <button className={styles.btn} onClick={handleToday}>
         Today
       </button>
       <button className={styles.btn} onClick={handleForward}>
-        {'>'}
+        <img src={next} alt='<' />
       </button>
     </div>
   )
