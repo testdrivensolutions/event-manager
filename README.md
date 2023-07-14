@@ -20,9 +20,16 @@ No dependancies used
 - It is the responsibility of the user to determine how to interact with the data during these events.
 
 ```
+import React, { useMemo, useState } from 'react'
+import { resources } from './data'
+import { MonthYear, EventManager, ClickData, Page, Resource } from './'
+// These components can be anything that you want
+import { TextField } from '@mui/material'
+import { TablePagination } from '@mui/material'
+
 function App() {
   const [page, setPage] = useState<Page>({
-    current: 1,
+    current: 0,
     size: 10,
     count: Math.ceil(resources.length / 10),
     total: resources.length,
@@ -36,8 +43,8 @@ function App() {
     setLoading(true)
     setTimeout(() => {
       const data = resources.slice(
-        (page.current - 1) * page.size,
         page.current * page.size,
+        (page.current + 1) * page.size,
       )
       setData(data)
       setLoading(false)
@@ -56,9 +63,16 @@ function App() {
     console.log(text)
   }
 
-  const handlePageChange = (page: Page) => {
-    setPage(page)
-    console.log(page)
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    newPage: number,
+  ) => {
+    setPage({ ...page, current: newPage })
+  }
+  const handleChangeRowsPerPage = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setPage({ ...page, size: Number(e.target.value) })
   }
 
   return (
@@ -66,7 +80,6 @@ function App() {
       <EventManager
         resources={data}
         tableId={1}
-        page={page}
         search={
           <TextField
             variant='standard'
@@ -74,17 +87,27 @@ function App() {
             onChange={(e) => handleSearch(e.target.value)}
           />
         }
+        pagination={
+          <TablePagination
+            component='div'
+            count={page.total}
+            page={page.current}
+            onPageChange={handleChangePage}
+            rowsPerPage={page.count}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        }
         showLegend
         showTooltip
         loading={loading}
-        onPageChange={handlePageChange}
-        onSearch={handleSearch}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
       />
     </div>
   )
 }
+
+export default App
 ```
 
 ## Used Types
@@ -145,7 +168,6 @@ handleUpdateDate(data: MonthYear) => void
 <EventManager
   resources={data}
   tableId={1}
-  page={page}
   search={
     <TextField
       variant='standard'
@@ -153,11 +175,19 @@ handleUpdateDate(data: MonthYear) => void
       onChange={(e) => handleSearch(e.target.value)}
     />
   }
+  pagination={
+    <TablePagination
+      component='div'
+      count={page.total}
+      page={page.current}
+      onPageChange={handleChangePage}
+      rowsPerPage={page.count}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+    />
+  }
   showLegend
   showTooltip
   loading={loading}
-  onPageChange={handlePageChange}
-  onSearch={handleSearch}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
 />
@@ -165,18 +195,16 @@ handleUpdateDate(data: MonthYear) => void
 
 ```
 Props = {
-resources: Resource[]
-tableId: ID
-page: Page
-hasWeekends?: boolean // default false
-searchable?: boolean // default false
-flat?: boolean // default false
-showLegend?: boolean // default false
-showTooltip?: boolean // default false
-loading?: boolean // default false
-onPageChange: (page: Page) => void
-onSearch?: (text: string) => void
-onClick: (data: ClickData | undefined) => void
-onUpdateDate: (date: MonthYear) => void
+  resources: Resource[]
+  tableId: ID
+  hasWeekends?: boolean // default false
+  flat?: boolean // default false
+  showLegend?: boolean // default false
+  showTooltip?: boolean // default false
+  loading?: boolean // default false
+  search?: ReactElement<HTMLInputElement>
+  pagination?: ReactElement<HTMLDivElement>
+  onClick: (data: ClickData | undefined) => void
+  onUpdateDate: (date: MonthYear) => void
 }
 ```
