@@ -1,3 +1,5 @@
+import { ReactElement } from 'react'
+
 export type Resource = {
   id: string
   title: string
@@ -36,11 +38,11 @@ export type Props = {
   tableId: ID
   page: Page
   hasWeekends?: boolean // default false
-  searchable?: boolean // default false
   flat?: boolean // default false
   showLegend?: boolean // default false
   showTooltip?: boolean // default false
   loading?: boolean // default false
+  search?: ReactElement<HTMLInputElement>
   onPageChange: (page: Page) => void
   onSearch?: (text: string) => void
   onClick: (data: ClickData | undefined) => void

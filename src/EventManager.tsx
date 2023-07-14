@@ -11,7 +11,7 @@ import {
   useResourcesByEventTypes,
 } from '.'
 import styles from './styles.module.scss'
-import { Actions, EventCell, Legend, TextInput } from './components'
+import { Actions, EventCell, Legend } from './components'
 import { Pagination } from './components/Pagination'
 import { Loading } from './components/Loading/Loading'
 
@@ -20,12 +20,11 @@ export const EventManager: React.FC<Props> = ({
   tableId,
   page,
   hasWeekends = false,
-  searchable = false,
   flat = false,
   showLegend = false,
   showTooltip = false,
   loading = false,
-  onSearch,
+  search = null,
   onClick,
   onUpdateDate,
   onPageChange,
@@ -60,7 +59,7 @@ export const EventManager: React.FC<Props> = ({
       id={`${tableId} timeline-container`}
     >
       <div className={styles.timelineHeadline}>
-        {searchable && <TextInput onSearch={onSearch} />}
+        {search}
         <div>{formatMonthYear(monthYear)}</div>
         <Actions monthYear={monthYear} onUpdate={updateDate} />
       </div>
