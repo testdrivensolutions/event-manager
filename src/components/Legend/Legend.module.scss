@@ -1,6 +1,13 @@
+@import '../../sass/main.scss';
+
 .legend {
   padding: 24px;
   display: flex;
+
+  @include respond(tab-port) {
+    font-size: 12px;
+    padding: 12px;
+  }
 }
 
 .type {
@@ -8,13 +15,17 @@
   align-items: center;
   &:not(:last-child) {
     margin: 0 24px 0 0;
+
+    @include respond(tab-port) {
+      margin: 0 12px 0 0;
+    }
   }
 }
 
 .color {
   height: 12px;
   width: 12px;
-  background-color: #000;
+  background-color: $color-black;
   border-radius: 50%;
   margin: 0 12px 0 0;
 }

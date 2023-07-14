@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import './sass/main.scss';
 
 .timelineContainer {
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  background-color: #fafafa;
+  box-shadow: $shadow-1;
+  background-color: $color-light;
   margin: 24px 0;
   border-radius: 5px;
   width: 100%;
@@ -23,6 +23,11 @@
   align-items: center;
   padding: 0 24px;
   font-weight: 500;
+
+  @include respond(tab-port) {
+    padding: 0 0 12px;
+    flex-direction: column;
+  }
 }
 
 .tableContainer {
@@ -41,7 +46,7 @@
     position: sticky;
     left: 0;
     z-index: 10;
-    background-color: #fafafa;
+    background-color: $color-light;
     padding: 6px 32px;
     white-space: nowrap;
     max-width: 200px;
@@ -54,13 +59,17 @@
     top: 0;
     z-index: 1;
     padding: 0 12px;
-    background-color: #fafafa;
-    border-bottom: #e0e0e0 solid 2px;
+    background-color: $color-light;
+    border-bottom: $color-grey-light-1 solid 2px;
   }
 
   & tbody {
     font-size: 14px;
     max-height: 80vh;
+  }
+
+  @include respond(tab-port) {
+    font-size: 14px;
   }
 }
 
@@ -68,4 +77,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include respond(tab-port) {
+    flex-direction: column;
+  }
 }

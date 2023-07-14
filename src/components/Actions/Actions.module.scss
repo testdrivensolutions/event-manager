@@ -1,9 +1,15 @@
+@import '../../sass/main.scss';
+
 .timelineActions {
   display: flex;
   align-items: center;
 
   & *:not(:last-child) {
     margin-right: 12px;
+  }
+
+  @include respond(tab-port) {
+    margin-top: 12px;
   }
 }
 
@@ -22,6 +28,6 @@
   outline: none;
 
   &:hover {
-    background-color: #ccc;
+    background-color: $color-grey-light-1;
   }
 }

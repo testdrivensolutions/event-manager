@@ -1,3 +1,5 @@
+@import '../../sass/main.scss';
+
 .eventCell {
   position: relative;
   padding: 12px 0;
@@ -13,7 +15,7 @@
     left: 0;
     right: 0;
     height: 8px;
-    background-color: #fafafa;
+    background-color: $color-light;
   }
 
   &::before {
@@ -32,8 +34,8 @@
 
 .tooltip {
   opacity: 0;
-  background-color: #333;
-  color: #fff;
+  background-color: $color-grey-dark-3;
+  color: $color-white;
   padding: 14px;
   border-radius: 5px;
   position: absolute;

@@ -1,8 +1,15 @@
+@import '../../sass/main.scss';
+
 .pagination {
   margin: 12px 0 0;
   padding: 24px;
   display: flex;
   align-items: center;
+
+  @include respond(tab-port) {
+    flex-direction: column;
+    margin: 0;
+  }
 }
 
 .navigation {
@@ -19,13 +26,17 @@
 
 .active {
   font-weight: 700;
-  background-color: #e0e0e0;
+  background-color: $color-grey-light-1;
 }
 
 .select {
   position: relative;
   margin: 0 0 0 24px;
   width: 100px;
+
+  @include respond(tab-port) {
+    margin: 24px 0 0 0;
+  }
 }
 
 .selectText {
@@ -37,13 +48,13 @@
   font-size: 14px;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid $muted-color;
 }
 
 /* Remove focus */
 .selectText:focus {
   outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid $color-black;
 }
 
 /* Use custom arrow */
@@ -63,13 +74,13 @@
   content: '';
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid rgba(0, 0, 0, 0.12);
+  border-top: 6px solid rgba($color-black, 0.122);
   pointer-events: none;
 }
 
 /* LABEL ======================================= */
 .selectLabel {
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba($color-black, 0.26);
   font-size: 12px;
   font-weight: normal;
   position: absolute;
@@ -82,7 +93,7 @@
 /* active state */
 .selectText:focus ~ .selectLabel,
 .selectText:valid ~ .selectLabel {
-  color: #2f80ed;
+  color: $hl-color;
   top: -20px;
   transition: 0.2s ease all;
   font-size: 12px;
@@ -102,7 +113,7 @@
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: #2f80ed;
+  background: $hl-color;
   transition: 0.2s ease all;
 }
 

@@ -1,12 +1,12 @@
-$bg-color: #424242;
-$hl-color: #2196f3;
-$muted-color: mix(white, $bg-color, 70%);
-$trans-time: 200ms;
-$width: 200px;
+@import '../../sass/main.scss';
 
 .inputGroup {
   position: relative;
   margin: 24px 0;
+
+  @include respond(tab-port) {
+    margin: 12px 0;
+  }
 
   input {
     background: none;
@@ -14,7 +14,7 @@ $width: 200px;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
-    width: $width;
+    width: $input-width;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $muted-color;
@@ -28,7 +28,7 @@ $width: 200px;
       color: $hl-color;
     }
     &:focus ~ .bar:before {
-      width: $width;
+      width: $input-width;
     }
   }
 
@@ -46,7 +46,7 @@ $width: 200px;
   .bar {
     position: relative;
     display: block;
-    width: $width;
+    width: $input-width;
     &:before {
       content: '';
       height: 2px;
