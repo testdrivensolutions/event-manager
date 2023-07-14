@@ -23,6 +23,7 @@ No dependancies used
 import React, { useMemo, useState } from 'react'
 import { resources } from './data'
 import { MonthYear, EventManager, ClickData, Page, Resource } from './'
+
 // These components can be anything that you want
 import { TextField } from '@mui/material'
 import { TablePagination } from '@mui/material'
@@ -202,8 +203,10 @@ Props = {
   showLegend?: boolean // default false
   showTooltip?: boolean // default false
   loading?: boolean // default false
+  // slots
   search?: ReactElement<HTMLInputElement>
   pagination?: ReactElement<HTMLDivElement>
+  //events
   onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }
