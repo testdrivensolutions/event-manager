@@ -58,7 +58,7 @@ export const useTimelineEffect = ({
         })
       })
     })
-  }, [monthYear, page])
+  }, [monthYear, page, resources])
 }
 
 export const useDebounce = <T>(value: T, delay: number): T => {

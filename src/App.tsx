@@ -13,11 +13,15 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   useMemo(() => {
-    const data = resources.slice(
-      (page.current - 1) * page.size,
-      page.current * page.size,
-    )
-    setData(data)
+    setLoading(true)
+    setTimeout(() => {
+      const data = resources.slice(
+        (page.current - 1) * page.size,
+        page.current * page.size,
+      )
+      setData(data)
+      setLoading(false)
+    }, 500)
   }, [page])
 
   const handleClick = (data: ClickData | undefined) => {
