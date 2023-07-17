@@ -1,4 +1,5 @@
 import { Event } from '../../types'
+import { getDayMonth } from '../../utils'
 import styles from './EventCell.module.scss'
 
 export const createTooltip = (
@@ -11,9 +12,10 @@ export const createTooltip = (
     tooltipElement.classList.add(styles.tooltip)
     tooltipElement.innerHTML = `
     <b>${data.label}</b><br>
-    Event: ${data.event.title}<br>
-    Start at: ${data.event.start.toDateString()}<br>
-    ${data.event.end ? `End at: ${data.event.end.toDateString()}` : ''}
+    ${data.event.title}<br>
+    ${getDayMonth(data.event.start)} ${
+      data.event.end ? ` - ${getDayMonth(data.event.end)}` : ''
+    }
     `
     element.appendChild(tooltipElement)
   }
