@@ -41,7 +41,7 @@ function App() {
   }
 
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    _event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     newPage: number,
   ) => {
     setPage({ ...page, current: newPage })
