@@ -16,13 +16,13 @@
     "url": "https://github.com/jurisbandenieks/event-manager/issues"
   },
   "private": false,
-  "main": "./dist/event-manager.umd",
-  "module": "./dist/event-manager.es",
+  "main": "./dist/event-manager.umd.js",
+  "module": "./dist/event-manager.es.js",
   "exports": {
     ".": {
-      "types": "./dist/index",
-      "import": "./dist/event-manager.es",
-      "require": "./dist/event-manager.umd"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/event-manager.es.js",
+      "require": "./dist/event-manager.umd.js"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
