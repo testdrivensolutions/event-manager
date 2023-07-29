@@ -19,6 +19,8 @@ No dependancies used
 - This component provides tools for firing events but does not handle data processing.
 - It is the responsibility of the user to determine how to interact with the data during these events.
 
+### Example
+
 ```
 import React, { useMemo, useState } from 'react'
 import { resources } from './data'
@@ -100,6 +102,7 @@ function App() {
         }
         showLegend
         showTooltip
+        hasWeekends
         loading={loading}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
@@ -151,10 +154,10 @@ ID = number | string
 
 ```
 Page = {
-current: number
-size: number
-count: number
-total: number
+  current: number
+  size: number
+  count: number
+  total: number
 }
 ```
 
@@ -188,6 +191,7 @@ handleUpdateDate(data: MonthYear) => void
   }
   showLegend
   showTooltip
+  hasWeekends
   loading={loading}
   onClick={handleClick}
   onUpdateDate={handleUpdateDate}
