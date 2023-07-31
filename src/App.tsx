@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { resources } from './data'
 import { MonthYear, EventManager, ClickData, Page, Resource } from './'
-import { TextField } from '@mui/material'
-import { TablePagination } from '@mui/material'
+import { TextField, TablePagination } from '@mui/material'
 
 function App() {
   const [page, setPage] = useState<Page>({
