@@ -1,6 +1,6 @@
 ![build](https://github.com/jurisbandenieks/event-manager/actions/workflows/main.yml/badge.svg)
 
-![StackBlitz example](https://stackblitz.com/edit/event-manager-react)
+[StackBlitz example](https://stackblitz.com/edit/event-manager-react)
 
 # React Timeline manager component
 
