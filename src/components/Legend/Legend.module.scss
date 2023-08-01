@@ -2,6 +2,7 @@
 
 .legend {
   display: flex;
+  margin-right: 12px;
 
   @include respond(tab-port) {
     font-size: 12px;

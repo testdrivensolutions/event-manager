@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   formatDate,
   getDaysInMonth,
   getYearAndMonth,
   useTimelineEffect,
-  formatMonthYear,
-  MonthYear,
   Props,
   isWeekend,
   useResourcesByEventTypes,
+  formatMonthYear,
 } from '.'
 import styles from './styles.module.scss'
-import { Actions, EventCell, Legend } from './components'
-import { Loading } from './components/Loading/Loading'
+import { Actions, EventCell, Legend, Loading } from './components'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -21,9 +19,11 @@ export const EventManager: React.FC<Props> = ({
   flat = false,
   showLegend = false,
   showTooltip = false,
+  title = null,
   loading = false,
   search = null,
   pagination = null,
+  actionsPossition = 'top',
   onClick,
   onUpdateDate,
 }) => {
@@ -39,16 +39,19 @@ export const EventManager: React.FC<Props> = ({
     showTooltip,
   })
 
-  const updateDate = (date: MonthYear) => {
-    setMonthYear(date)
-    setDaysInMonth(getDaysInMonth(date, hasWeekends))
-    onUpdateDate(date)
-  }
+  useEffect(() => {
+    setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
+    onUpdateDate(monthYear)
+  }, [monthYear])
 
   const inculdeWeekends = (day: Date): boolean => {
     if (hasWeekends) return true
     return !hasWeekends && !isWeekend(day)
   }
+
+  const renderActions = (
+    <Actions monthYear={monthYear} onUpdate={(date) => setMonthYear(date)} />
+  )
 
   return (
     <div
@@ -57,8 +60,7 @@ export const EventManager: React.FC<Props> = ({
     >
       <div className={styles.timelineHeadline}>
         {search}
-        <div className={styles.monthYear}>{formatMonthYear(monthYear)}</div>
-        <Actions monthYear={monthYear} onUpdate={updateDate} />
+        {actionsPossition === 'top' && renderActions}
       </div>
 
       {loading ? (
@@ -68,7 +70,7 @@ export const EventManager: React.FC<Props> = ({
           <table className={styles.timelineTable}>
             <thead>
               <tr>
-                <th>&nbsp;</th>
+                <th>{title ?? formatMonthYear(monthYear)}</th>
                 {daysInMonth.map(
                   (day) =>
                     inculdeWeekends(day) && (
@@ -102,6 +104,7 @@ export const EventManager: React.FC<Props> = ({
 
       <div className={styles.footer}>
         {showLegend && <Legend resources={resources} />}
+        {actionsPossition === 'bottom' && renderActions}
         {pagination}
       </div>
     </div>

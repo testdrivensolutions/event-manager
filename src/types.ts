@@ -43,6 +43,8 @@ export type Props = {
   loading?: boolean // default false
   search?: ReactElement<HTMLInputElement>
   pagination?: ReactElement<HTMLDivElement>
+  title?: string
+  actionsPossition?: 'top' | 'bottom' // default 'top'
   onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }

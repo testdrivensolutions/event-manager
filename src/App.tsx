@@ -1,6 +1,13 @@
 import React, { useMemo, useState } from 'react'
 import { resources } from './data'
-import { MonthYear, EventManager, ClickData, Page, Resource } from './'
+import {
+  MonthYear,
+  EventManager,
+  ClickData,
+  Page,
+  Resource,
+  getYearAndMonth,
+} from './'
 import { TextField, TablePagination } from '@mui/material'
 
 function App() {
@@ -11,6 +18,7 @@ function App() {
     total: resources.length,
   })
   const [data, setData] = useState<Resource[]>([])
+  const [monthYear, setMonthYear] = useState<MonthYear>(getYearAndMonth())
   const [loading, setLoading] = useState(false)
 
   // This can be any async fetch function
@@ -25,7 +33,7 @@ function App() {
       setData(data)
       setLoading(false)
     }, 500)
-  }, [page])
+  }, [page, monthYear])
 
   const handleClick = (data: ClickData | undefined) => {
     console.log(data)
@@ -33,6 +41,7 @@ function App() {
 
   const handleUpdateDate = (date: MonthYear) => {
     console.log(date)
+    setMonthYear(date)
   }
 
   const handleSearch = (text: string) => {
@@ -60,6 +69,9 @@ function App() {
           <TextField
             variant='standard'
             label='Search'
+            sx={{
+              margin: '0 0 24px',
+            }}
             onChange={(e) => handleSearch(e.target.value)}
           />
         }
@@ -73,6 +85,7 @@ function App() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         }
+        actionsPossition='top'
         showLegend
         showTooltip
         loading={loading}

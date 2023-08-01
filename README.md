@@ -26,11 +26,15 @@ No dependancies used
 ```
 import React, { useMemo, useState } from 'react'
 import { resources } from './data'
-import { MonthYear, EventManager, ClickData, Page, Resource } from './'
-
-// These components can be anything that you want
-import { TextField } from '@mui/material'
-import { TablePagination } from '@mui/material'
+import {
+  MonthYear,
+  EventManager,
+  ClickData,
+  Page,
+  Resource,
+  getYearAndMonth,
+} from './'
+import { TextField, TablePagination } from '@mui/material'
 
 function App() {
   const [page, setPage] = useState<Page>({
@@ -40,6 +44,7 @@ function App() {
     total: resources.length,
   })
   const [data, setData] = useState<Resource[]>([])
+  const [monthYear, setMonthYear] = useState<MonthYear>(getYearAndMonth())
   const [loading, setLoading] = useState(false)
 
   // This can be any async fetch function
@@ -54,7 +59,7 @@ function App() {
       setData(data)
       setLoading(false)
     }, 500)
-  }, [page])
+  }, [page, monthYear])
 
   const handleClick = (data: ClickData | undefined) => {
     console.log(data)
@@ -62,6 +67,7 @@ function App() {
 
   const handleUpdateDate = (date: MonthYear) => {
     console.log(date)
+    setMonthYear(date)
   }
 
   const handleSearch = (text: string) => {
@@ -69,7 +75,7 @@ function App() {
   }
 
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    _event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     newPage: number,
   ) => {
     setPage({ ...page, current: newPage })
@@ -89,6 +95,9 @@ function App() {
           <TextField
             variant='standard'
             label='Search'
+            sx={{
+              margin: '0 0 24px',
+            }}
             onChange={(e) => handleSearch(e.target.value)}
           />
         }
@@ -102,9 +111,9 @@ function App() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         }
+        actionsPossition='top'
         showLegend
         showTooltip
-        hasWeekends
         loading={loading}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
@@ -114,6 +123,7 @@ function App() {
 }
 
 export default App
+
 ```
 
 ## Used Types
@@ -209,10 +219,10 @@ Props = {
   showLegend?: boolean // default false
   showTooltip?: boolean // default false
   loading?: boolean // default false
-  // slots
   search?: ReactElement<HTMLInputElement>
   pagination?: ReactElement<HTMLDivElement>
-  //events
+  title?: string
+  actionsPossition?: 'top' | 'bottom' // default 'top'
   onClick: (data: ClickData | undefined) => void
   onUpdateDate: (date: MonthYear) => void
 }
