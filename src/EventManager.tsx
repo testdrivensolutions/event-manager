@@ -106,7 +106,10 @@ export const EventManager: React.FC<Props> = ({
           </table>
         </div>
       ) : (
-        <div className={styles.noData}>{noDataText}</div>
+        <div className={styles.noData}>
+          <div>{formatMonthYear(monthYear)}</div>
+          <div>{noDataText}</div>
+        </div>
       )}
 
       <div className={styles.footer}>
