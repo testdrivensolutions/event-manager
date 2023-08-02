@@ -41,6 +41,7 @@ export type Props = {
   showLegend?: boolean // default false
   showTooltip?: boolean // default false
   loading?: boolean // default false
+  multiLine?: boolean // default true
   search?: ReactElement<HTMLInputElement>
   pagination?: ReactElement<HTMLDivElement>
   title?: string

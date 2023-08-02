@@ -19,6 +19,7 @@ export const EventManager: React.FC<Props> = ({
   flat = false,
   showLegend = false,
   showTooltip = false,
+  multiLine = true,
   title = null,
   loading = false,
   search = null,
@@ -31,7 +32,10 @@ export const EventManager: React.FC<Props> = ({
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
-  const resourcesByEventTypes = useResourcesByEventTypes(resources)
+  const resourcesByEventTypes = useResourcesByEventTypes({
+    resources,
+    multiLine,
+  })
   useTimelineEffect({
     resources: resourcesByEventTypes,
     monthYear,

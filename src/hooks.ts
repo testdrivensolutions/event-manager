@@ -75,10 +75,18 @@ export const useDebounce = <T>(value: T, delay: number): T => {
   return debouncedValue
 }
 
-export const useResourcesByEventTypes = (resources: Resource[]): Resource[] => {
+export const useResourcesByEventTypes = ({
+  resources,
+  multiLine,
+}: {
+  resources: Resource[]
+  multiLine: boolean
+}): Resource[] => {
   const [resourcesByEventTypes, setResourcesByEventTypes] = useState<
     Resource[]
   >([])
+
+  if (!multiLine) return resources
 
   useMemo(() => {
     const newMappedResources = resources.flatMap((resource) => {
