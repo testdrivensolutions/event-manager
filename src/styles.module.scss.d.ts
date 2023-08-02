@@ -5,5 +5,6 @@ declare const classNames: {
   readonly footer: 'footer'
   readonly monthYear: 'monthYear'
   readonly tableContainer: 'tableContainer'
+  readonly noData: 'noData'
 }
 export = classNames

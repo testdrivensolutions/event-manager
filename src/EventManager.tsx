@@ -24,6 +24,7 @@ export const EventManager: React.FC<Props> = ({
   search = null,
   pagination = null,
   actionsPossition = 'top',
+  noDataText = 'No data',
   onClick,
   onUpdateDate,
 }) => {
@@ -65,7 +66,7 @@ export const EventManager: React.FC<Props> = ({
 
       {loading ? (
         <Loading />
-      ) : (
+      ) : resources.length > 0 ? (
         <div className={styles.tableContainer}>
           <table className={styles.timelineTable}>
             <thead>
@@ -100,6 +101,8 @@ export const EventManager: React.FC<Props> = ({
             </tbody>
           </table>
         </div>
+      ) : (
+        <div className={styles.noData}>{noDataText}</div>
       )}
 
       <div className={styles.footer}>
