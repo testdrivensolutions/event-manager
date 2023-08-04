@@ -1,0 +1,58 @@
+@import '../../sass/main.scss';
+
+.tableContainer {
+  max-height: 80%;
+  width: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  display: flex;
+  padding: 0 12px 0 0;
+}
+
+.timelineTable {
+  border-collapse: collapse;
+  width: auto;
+  margin: 0 auto;
+
+  & th:first-child,
+  & tr td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background-color: $color-light;
+    padding: 6px 24px;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include respond(phone) {
+      max-width: 100px;
+      padding: 6px 12px;
+    }
+  }
+
+  & th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 0 12px;
+    background-color: $color-light;
+    border-bottom: $color-grey-light-1 solid 2px;
+  }
+
+  th:first-child {
+    z-index: 100;
+    top: 0;
+    left: 0;
+  }
+
+  & tbody {
+    font-size: 14px;
+    max-height: 80vh;
+  }
+
+  @include respond(tab-port) {
+    font-size: 14px;
+  }
+}

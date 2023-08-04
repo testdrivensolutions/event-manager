@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {
-  formatDate,
-  getDaysInMonth,
-  getYearAndMonth,
-  useTimelineEffect,
-  Props,
-  isWeekend,
-  useResourcesByEventTypes,
-  formatMonthYear,
-} from '.'
+import { getDaysInMonth, getYearAndMonth, Props, formatMonthYear } from '.'
 import styles from './styles.module.scss'
-import { Actions, EventCell, Legend, Loading } from './components'
+import { Actions, Loading } from './components'
+import { Footer } from './components/Footer'
+import { EventTable } from './components/EventTable'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -32,27 +25,10 @@ export const EventManager: React.FC<Props> = ({
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
-  const resourcesByEventTypes = useResourcesByEventTypes({
-    resources,
-    multiLine,
-  })
-  useTimelineEffect({
-    resources: resourcesByEventTypes,
-    monthYear,
-    key: tableId,
-    flat,
-    showTooltip,
-  })
-
   useEffect(() => {
     setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
     onUpdateDate(monthYear)
   }, [monthYear])
-
-  const inculdeWeekends = (day: Date): boolean => {
-    if (hasWeekends) return true
-    return !hasWeekends && !isWeekend(day)
-  }
 
   const renderActions = (
     <Actions monthYear={monthYear} onUpdate={(date) => setMonthYear(date)} />
@@ -71,40 +47,18 @@ export const EventManager: React.FC<Props> = ({
       {loading ? (
         <Loading />
       ) : resources.length > 0 ? (
-        <div className={styles.tableContainer}>
-          <table className={styles.timelineTable}>
-            <thead>
-              <tr>
-                <th>{title ?? formatMonthYear(monthYear)}</th>
-                {daysInMonth.map(
-                  (day) =>
-                    inculdeWeekends(day) && (
-                      <th key={day.toDateString()}>{formatDate(day)}</th>
-                    ),
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {resourcesByEventTypes.map((item) => (
-                <tr key={item.id} id={item.id}>
-                  <td id={item.title}>{item.title}</td>
-                  {daysInMonth.map((day) => {
-                    return (
-                      inculdeWeekends(day) && (
-                        <EventCell
-                          key={`${day.toDateString()}-${item.id}-${tableId}`}
-                          id={`${day.toDateString()}-${item.id}-${tableId}`}
-                          resource={item}
-                          onClick={onClick}
-                        ></EventCell>
-                      )
-                    )
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <EventTable
+          resources={resources}
+          title={title ?? formatMonthYear(monthYear)}
+          daysInMonth={daysInMonth}
+          monthYear={monthYear}
+          hasWeekends={hasWeekends}
+          tableId={tableId}
+          flat={flat}
+          multiLine={multiLine}
+          showTooltip={showTooltip}
+          onClick={onClick}
+        />
       ) : (
         <div className={styles.noData}>
           <div>{formatMonthYear(monthYear)}</div>
@@ -112,11 +66,13 @@ export const EventManager: React.FC<Props> = ({
         </div>
       )}
 
-      <div className={styles.footer}>
-        {showLegend && <Legend resources={resources} />}
+      <Footer
+        resources={resources}
+        pagination={pagination}
+        showLegend={showLegend}
+      >
         {actionsPossition === 'bottom' && renderActions}
-        {pagination}
-      </div>
+      </Footer>
     </div>
   )
 }
