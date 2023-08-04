@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getDaysInMonth, getYearAndMonth, Props, formatMonthYear } from '.'
 import styles from './styles.module.scss'
-import { Actions, Loading } from './components'
-import { Footer } from './components/Footer'
-import { EventTable } from './components/EventTable'
+import { Actions, Loading, Footer, EventTable } from './components'
 
 export const EventManager: React.FC<Props> = ({
   resources,
