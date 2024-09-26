@@ -32,6 +32,13 @@
   }
 }
 
+.duration-cell {
+  &:hover .tooltip {
+    opacity: 1;
+    animation: fadeIn 0.3s;
+  }
+}
+
 .tooltip {
   opacity: 0;
   background-color: $color-grey-dark-3;

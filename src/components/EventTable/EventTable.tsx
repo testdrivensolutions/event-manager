@@ -42,7 +42,7 @@ export const EventTable = ({
     showTooltip,
   })
 
-  const inculdeWeekends = (day: Date): boolean => {
+  const includeWeekends = (day: Date): boolean => {
     if (hasWeekends) return true
     return !hasWeekends && !isWeekend(day)
   }
@@ -55,7 +55,7 @@ export const EventTable = ({
             <th>{title}</th>
             {daysInMonth.map(
               (day) =>
-                inculdeWeekends(day) && (
+                includeWeekends(day) && (
                   <th key={day.toDateString()}>{formatDate(day)}</th>
                 ),
             )}
@@ -67,7 +67,7 @@ export const EventTable = ({
               <td id={item.title}>{item.title}</td>
               {daysInMonth.map((day) => {
                 return (
-                  inculdeWeekends(day) && (
+                  includeWeekends(day) && (
                     <EventCell
                       key={`${day.toDateString()}-${item.id}-${tableId}`}
                       id={`${day.toDateString()}-${item.id}-${tableId}`}

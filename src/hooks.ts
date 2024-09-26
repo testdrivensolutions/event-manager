@@ -31,6 +31,7 @@ export const useTimelineEffect = ({
             `${eventDay.toDateString()}-${item.id}-${key}`,
           )
           if (durationCell) {
+            durationCell.classList.add('duration-cell')
             durationCell.style.backgroundColor = event.color ?? ''
             durationCell.style.cursor = 'pointer'
             durationCell.style.boxShadow = '0 1px 0 0 rgba(0, 0, 0, 0.15)'
@@ -42,7 +43,7 @@ export const useTimelineEffect = ({
               durationCell.style.borderTopRightRadius = '5px'
               durationCell.style.borderBottomRightRadius = '5px'
             }
-            if (isWeekend(eventDay)) durationCell.style.opacity = '0.3'
+            // if (isWeekend(eventDay)) durationCell.style.opacity = '0.3'
             const eventData = {
               event,
               resourceId: item.id.split('-')[0],
