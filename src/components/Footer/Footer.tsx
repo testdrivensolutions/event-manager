@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react'
-import styles from './Footer.module.scss'
-import { Legend } from '../Legend'
-import { Resource } from '../../types'
+import React, { ReactElement } from "react";
+import { Legend } from "../Legend";
+import { Resource } from "../../types";
+import styles from "./Footer.module.scss";
 
 type Props = {
   resources: Resource[]
@@ -15,12 +15,10 @@ export const Footer = ({
   showLegend,
   pagination,
   children,
-}: Props) => {
-  return (
+}: Props) => (
     <div className={styles.footer}>
       {showLegend && <Legend resources={resources} />}
       {children}
       {pagination}
     </div>
-  )
-}
+  );

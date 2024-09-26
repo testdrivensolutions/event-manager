@@ -1,5 +1,5 @@
 declare const classNames: {
-  readonly tableContainer: 'tableContainer'
-  readonly timelineTable: 'timelineTable'
-}
+  readonly tableContainer: "tableContainer"
+  readonly timelineTable: "timelineTable"
+};
 export = classNames

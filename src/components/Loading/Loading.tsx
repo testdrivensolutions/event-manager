@@ -1,8 +1,7 @@
-import React from 'react'
-import styles from './Loading.module.scss'
+import React from "react";
+import styles from "./Loading.module.scss";
 
-export const Loading = () => {
-  return (
+export const Loading = () => (
     <div className={styles.rollerContainer}>
       <div className={styles.ldsRoller}>
         <div></div>
@@ -15,5 +14,4 @@ export const Loading = () => {
         <div></div>
       </div>
     </div>
-  )
-}
+  );

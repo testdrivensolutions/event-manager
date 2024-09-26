@@ -1,4 +1,4 @@
 declare const classNames: {
-  readonly footer: 'footer'
-}
+  readonly footer: "footer"
+};
 export = classNames

@@ -1,9 +1,9 @@
-import React from 'react'
-import styles from './Actions.module.scss'
-import { MonthYear } from '../../types'
-import { getYearAndMonth } from '../../utils'
-import back from '../../assets/navigate_before.svg'
-import next from '../../assets/navigate_next.svg'
+import React from "react";
+import { MonthYear } from "../../types";
+import { getYearAndMonth } from "../../utils";
+import back from "../../assets/navigate_before.svg";
+import next from "../../assets/navigate_next.svg";
+import styles from "./Actions.module.scss";
 
 type Props = {
   monthYear: MonthYear
@@ -12,28 +12,28 @@ type Props = {
 
 export const Actions: React.FC<Props> = ({ monthYear, onUpdate }) => {
   const handleBack = () => {
-    let date
+    let date;
     if (monthYear.month <= 1) {
-      date = { month: 12, year: monthYear.year - 1 }
+      date = { month: 12, year: monthYear.year - 1 };
     } else {
-      date = { ...monthYear, month: monthYear.month - 1 }
+      date = { ...monthYear, month: monthYear.month - 1 };
     }
-    onUpdate(date)
-  }
+    onUpdate(date);
+  };
 
   const handleForward = () => {
-    let date
+    let date;
     if (monthYear.month >= 12) {
-      date = { month: 1, year: monthYear.year + 1 }
+      date = { month: 1, year: monthYear.year + 1 };
     } else {
-      date = { ...monthYear, month: monthYear.month + 1 }
+      date = { ...monthYear, month: monthYear.month + 1 };
     }
-    onUpdate(date)
-  }
+    onUpdate(date);
+  };
 
   const handleToday = () => {
-    onUpdate(getYearAndMonth())
-  }
+    onUpdate(getYearAndMonth());
+  };
 
   return (
     <div className={styles.timelineActions}>
@@ -47,5 +47,5 @@ export const Actions: React.FC<Props> = ({ monthYear, onUpdate }) => {
         <img src={next} alt='<' />
       </button>
     </div>
-  )
-}
+  );
+};

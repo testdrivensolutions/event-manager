@@ -1,2 +1,2 @@
-export * from './EventCell'
-export * from './utils'
+export * from "./EventCell";
+export * from "./utils";
