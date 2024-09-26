@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
-import { Actions, Loading, Footer, EventTable } from "./components";
-import { getDaysInMonth, getYearAndMonth, Props, formatMonthYear } from ".";
+import React, { useEffect, useState } from 'react'
+import { getDaysInMonth, getYearAndMonth, Props, formatMonthYear } from '.'
+import styles from './styles.module.scss'
+import { Actions, Loading, Footer, EventTable } from './components'
 
 export const EventManager: React.FC<Props> = ({
   resources,
@@ -15,22 +15,25 @@ export const EventManager: React.FC<Props> = ({
   loading = false,
   search = null,
   pagination = null,
-  actionsPossition = "top",
-  noDataText = "No data",
+  actionsPossition = 'top',
+  noDataText = 'No data',
   onClick,
   onUpdateDate,
 }) => {
-  const [monthYear, setMonthYear] = useState(getYearAndMonth());
-  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear));
+  const [monthYear, setMonthYear] = useState(getYearAndMonth())
+  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useEffect(() => {
-    setDaysInMonth(getDaysInMonth(monthYear, hasWeekends));
-    onUpdateDate(monthYear);
-  }, [monthYear]);
+    setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
+    onUpdateDate(monthYear)
+  }, [monthYear])
 
   const renderActions = (
-    <Actions monthYear={monthYear} onUpdate={(date) => setMonthYear(date)} />
-  );
+    <Actions
+      monthYear={monthYear}
+      onUpdate={(date) => setMonthYear(new Date(date))}
+    />
+  )
 
   return (
     <div
@@ -39,7 +42,7 @@ export const EventManager: React.FC<Props> = ({
     >
       <div className={styles.timelineHeadline}>
         {search}
-        {actionsPossition === "top" && renderActions}
+        {actionsPossition === 'top' && renderActions}
       </div>
 
       {loading ? (
@@ -69,8 +72,8 @@ export const EventManager: React.FC<Props> = ({
         pagination={pagination}
         showLegend={showLegend}
       >
-        {actionsPossition === "bottom" && renderActions}
+        {actionsPossition === 'bottom' && renderActions}
       </Footer>
     </div>
-  );
-};
+  )
+}

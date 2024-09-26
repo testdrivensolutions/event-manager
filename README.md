@@ -44,7 +44,7 @@ function App() {
     total: resources.length,
   })
   const [data, setData] = useState<Resource[]>([])
-  const [monthYear, setMonthYear] = useState<MonthYear>(getYearAndMonth())
+  const [monthYear, setMonthYear] = useState<Date>(getYearAndMonth())
   const [loading, setLoading] = useState(false)
 
   // This can be any async fetch function
@@ -65,7 +65,7 @@ function App() {
     console.log(data)
   }
 
-  const handleUpdateDate = (date: MonthYear) => {
+  const handleUpdateDate = (date: Date) => {
     console.log(date)
     setMonthYear(date)
   }
@@ -175,7 +175,7 @@ Page = {
 
 ```
 handleClick(data: ClickData | undefined) => void
-handleUpdateDate(data: MonthYear) => void
+handleUpdateDate(data: Date) => void
 ```
 
 ## Timeline Props
@@ -226,6 +226,6 @@ Props = {
   actionsPossition?: 'top' | 'bottom' // default 'top'
   noDataText?: string // default 'No data'
   onClick?: (data: ClickData | undefined) => void
-  onUpdateDate: (date: MonthYear) => void
+  onUpdateDate: (date: Date) => void
 }
 ```

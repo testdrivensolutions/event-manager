@@ -1,13 +1,13 @@
-import React from "react";
-import { EventCell } from "../EventCell";
-import { ClickData, MonthYear, Resource } from "../../types";
-import { formatDate, isWeekend } from "../../utils";
-import { useResourcesByEventTypes, useTimelineEffect } from "../../hooks";
-import styles from "./EventTable.module.scss";
+import React from 'react'
+import styles from './EventTable.module.scss'
+import { EventCell } from '../EventCell'
+import { ClickData, Resource } from '../../types'
+import { formatDate, isWeekend } from '../../utils'
+import { useResourcesByEventTypes, useTimelineEffect } from '../../hooks'
 
 type Props = {
   title: string | null
-  monthYear: MonthYear
+  monthYear: Date
   daysInMonth: Date[]
   resources: Resource[]
   hasWeekends: boolean
@@ -33,19 +33,19 @@ export const EventTable = ({
   const resourcesByEventTypes = useResourcesByEventTypes({
     resources,
     multiLine,
-  });
+  })
   useTimelineEffect({
     resources: resourcesByEventTypes,
     monthYear,
     key: tableId,
     flat,
     showTooltip,
-  });
+  })
 
   const inculdeWeekends = (day: Date): boolean => {
-    if (hasWeekends) return true;
-    return !hasWeekends && !isWeekend(day);
-  };
+    if (hasWeekends) return true
+    return !hasWeekends && !isWeekend(day)
+  }
 
   return (
     <div className={styles.tableContainer}>
@@ -65,7 +65,8 @@ export const EventTable = ({
           {resourcesByEventTypes.map((item) => (
             <tr key={item.id} id={item.id}>
               <td id={item.title}>{item.title}</td>
-              {daysInMonth.map((day) => (
+              {daysInMonth.map((day) => {
+                return (
                   inculdeWeekends(day) && (
                     <EventCell
                       key={`${day.toDateString()}-${item.id}-${tableId}`}
@@ -74,11 +75,12 @@ export const EventTable = ({
                       onClick={onClick}
                     ></EventCell>
                   )
-                ))}
+                )
+              })}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}

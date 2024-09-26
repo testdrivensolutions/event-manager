@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement } from 'react'
 
 export type Resource = {
   id: string
@@ -45,8 +45,8 @@ export type Props = {
   search?: ReactElement<HTMLInputElement>
   pagination?: ReactElement<HTMLDivElement>
   title?: string
-  actionsPossition?: "top" | "bottom" // default 'top'
+  actionsPossition?: 'top' | 'bottom' // default 'top'
   noDataText?: string // default 'No data'
   onClick?: (data: ClickData | undefined) => void
-  onUpdateDate: (date: MonthYear) => void
+  onUpdateDate: (date: Date) => void
 }

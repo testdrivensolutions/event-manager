@@ -1,39 +1,40 @@
-import React from "react";
-import { MonthYear } from "../../types";
-import { getYearAndMonth } from "../../utils";
-import back from "../../assets/navigate_before.svg";
-import next from "../../assets/navigate_next.svg";
-import styles from "./Actions.module.scss";
+import React from 'react'
+import styles from './Actions.module.scss'
+import { getYearAndMonth } from '../../utils'
+import back from '../../assets/navigate_before.svg'
+import next from '../../assets/navigate_next.svg'
 
 type Props = {
-  monthYear: MonthYear
-  onUpdate: (date: MonthYear) => void
+  monthYear: Date
+  onUpdate: (date: Date) => void
 }
 
 export const Actions: React.FC<Props> = ({ monthYear, onUpdate }) => {
   const handleBack = () => {
-    let date;
-    if (monthYear.month <= 1) {
-      date = { month: 12, year: monthYear.year - 1 };
+    let date
+    if (monthYear.getMonth() <= 0) {
+      date = new Date(`${monthYear.getFullYear()}/12/1`)
     } else {
-      date = { ...monthYear, month: monthYear.month - 1 };
+      date = new Date(`${monthYear.getFullYear()}/${monthYear.getMonth()}/1`)
     }
-    onUpdate(date);
-  };
+    onUpdate(date)
+  }
 
   const handleForward = () => {
-    let date;
-    if (monthYear.month >= 12) {
-      date = { month: 1, year: monthYear.year + 1 };
+    let date
+    if (monthYear.getMonth() >= 11) {
+      date = new Date(`${monthYear.getFullYear() + 1}/1/1`)
     } else {
-      date = { ...monthYear, month: monthYear.month + 1 };
+      date = new Date(
+        `${monthYear.getFullYear()}/${monthYear.getMonth() + 2}/1`,
+      )
     }
-    onUpdate(date);
-  };
+    onUpdate(date)
+  }
 
   const handleToday = () => {
-    onUpdate(getYearAndMonth());
-  };
+    onUpdate(getYearAndMonth())
+  }
 
   return (
     <div className={styles.timelineActions}>
@@ -47,5 +48,5 @@ export const Actions: React.FC<Props> = ({ monthYear, onUpdate }) => {
         <img src={next} alt='<' />
       </button>
     </div>
-  );
-};
+  )
+}
