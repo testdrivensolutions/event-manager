@@ -26,7 +26,7 @@ export const EventManager: React.FC<Props> = ({
   useEffect(() => {
     setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
     onUpdateDate(monthYear)
-  }, [monthYear])
+  }, [monthYear, hasWeekends])
 
   const renderActions = (
     <Actions
