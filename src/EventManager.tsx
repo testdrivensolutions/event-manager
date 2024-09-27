@@ -28,11 +28,12 @@ export const EventManager: React.FC<Props> = ({
   useEffect(() => {
     if (datePicker && dateFromPicker) {
       setDaysInMonth(getDaysInMonth(dateFromPicker, hasWeekends))
+      setMonthYear(dateFromPicker)
     } else {
       setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
       onUpdateDate(monthYear)
     }
-  }, [monthYear, hasWeekends])
+  }, [monthYear, hasWeekends, dateFromPicker])
 
   const renderActions = datePicker ? (
     datePicker

@@ -1,5 +1,5 @@
 import { Key, useEffect, useMemo, useState } from 'react'
-import { Event, Resource, getDatesInRange, isWeekend } from '.'
+import { Event, Resource, getDatesInRange } from '.'
 import { createTooltip } from './components'
 
 type TimelineProps = {

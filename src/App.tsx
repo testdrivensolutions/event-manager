@@ -96,6 +96,7 @@ const App = () => {
         showLegend
         showTooltip
         hasWeekends={hasWeekends}
+        dateFromPicker={monthYear}
         datePicker={
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
