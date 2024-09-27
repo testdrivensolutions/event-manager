@@ -43,9 +43,11 @@ export type Props = {
   loading?: boolean // default false
   multiLine?: boolean // default true
   search?: ReactElement<HTMLInputElement>
+  dateFromPicker?: Date
+  datePicker?: ReactElement<HTMLInputElement>
   pagination?: ReactElement<HTMLDivElement>
   title?: string
-  actionsPossition?: 'top' | 'bottom' // default 'top'
+  actionsPosition?: 'top' | 'bottom' // default 'top'
   noDataText?: string // default 'No data'
   onClick?: (data: ClickData | undefined) => void
   onUpdateDate: (date: Date) => void

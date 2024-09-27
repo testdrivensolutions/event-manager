@@ -19,7 +19,6 @@
 .timelineHeadline {
   width: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 24px 12px;
   font-weight: 500;
@@ -32,6 +31,10 @@
   @include respond(tab-port) {
     margin: 0 0 12px;
   }
+}
+
+.spacer {
+  width: 24px;
 }
 
 .noData {

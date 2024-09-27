@@ -14,9 +14,11 @@ export const EventManager: React.FC<Props> = ({
   title = null,
   loading = false,
   search = null,
+  datePicker = null,
   pagination = null,
-  actionsPossition = 'top',
+  actionsPosition = 'top',
   noDataText = 'No data',
+  dateFromPicker = null,
   onClick,
   onUpdateDate,
 }) => {
@@ -24,11 +26,17 @@ export const EventManager: React.FC<Props> = ({
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useEffect(() => {
-    setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
-    onUpdateDate(monthYear)
+    if (datePicker && dateFromPicker) {
+      setDaysInMonth(getDaysInMonth(dateFromPicker, hasWeekends))
+    } else {
+      setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
+      onUpdateDate(monthYear)
+    }
   }, [monthYear, hasWeekends])
 
-  const renderActions = (
+  const renderActions = datePicker ? (
+    datePicker
+  ) : (
     <Actions
       monthYear={monthYear}
       onUpdate={(date) => setMonthYear(new Date(date))}
@@ -41,8 +49,9 @@ export const EventManager: React.FC<Props> = ({
       id={`${tableId} timeline-container`}
     >
       <div className={styles.timelineHeadline}>
+        {actionsPosition === 'top' && renderActions}
+        <div className={styles.spacer}></div>
         {search}
-        {actionsPossition === 'top' && renderActions}
       </div>
 
       {loading ? (
@@ -72,7 +81,7 @@ export const EventManager: React.FC<Props> = ({
         pagination={pagination}
         showLegend={showLegend}
       >
-        {actionsPossition === 'bottom' && renderActions}
+        {actionsPosition === 'bottom' && renderActions}
       </Footer>
     </div>
   )

@@ -1,7 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import { TextField, TablePagination, Button } from '@mui/material'
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { resources } from './data'
 import { EventManager, ClickData, Page, Resource, getYearAndMonth } from './'
+import { NonNullablePickerChangeHandler } from '@mui/x-date-pickers/internals/hooks/useViews'
 
 const App = () => {
   const [page, setPage] = useState<Page>({
@@ -54,6 +57,13 @@ const App = () => {
     setPage({ ...page, size: Number(e.target.value) })
   }
 
+  const handleDateChange = (
+    value: NonNullablePickerChangeHandler<Date> | null,
+    keyboardInputValue?: string,
+  ) => {
+    if (value) setMonthYear(value as unknown as Date)
+  }
+
   return (
     <div className='app'>
       <Button onClick={() => setHasWeekends(!hasWeekends)}>
@@ -82,10 +92,30 @@ const App = () => {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         }
-        actionsPossition='top'
+        actionsPosition='top'
         showLegend
         showTooltip
         hasWeekends={hasWeekends}
+        datePicker={
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              value={monthYear}
+              label={'"year" and "month"'}
+              views={['year', 'month']}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant='outlined'
+                  inputProps={{ ...params.inputProps, readOnly: true }}
+                  InputLabelProps={{ shrink: true }}
+                  margin='dense'
+                  size='small'
+                />
+              )}
+              onChange={handleDateChange}
+            />
+          </LocalizationProvider>
+        }
         loading={loading}
         onClick={handleClick}
         onUpdateDate={handleUpdateDate}
