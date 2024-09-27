@@ -42,7 +42,7 @@ export const generateResources = (): Resource[] => {
     resources.push(resource)
   }
 
-  return []
+  return resources
 }
 
 // Call the generateResources function to get the array of 100 resources

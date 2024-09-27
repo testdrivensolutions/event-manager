@@ -77,7 +77,7 @@ const App = () => {
             variant='standard'
             label='Search'
             sx={{
-              margin: '0 0 24px',
+              padding: '0 0 24px',
             }}
             onChange={(e) => handleSearch(e.target.value)}
           />
