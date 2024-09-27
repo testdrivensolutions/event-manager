@@ -3,6 +3,7 @@
 .timelineActions {
   display: flex;
   align-items: center;
+  background-color: $color-grey-light-2;
 
   & *:not(:last-child) {
     margin-right: 12px;

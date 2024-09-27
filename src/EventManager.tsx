@@ -72,8 +72,10 @@ export const EventManager: React.FC<Props> = ({
         />
       ) : (
         <div className={styles.noData}>
-          <div>{formatMonthYear(monthYear)}</div>
-          <div>{noDataText}</div>
+          <div>
+            <div>{formatMonthYear(monthYear)}</div>
+            <div>{noDataText}</div>
+          </div>
         </div>
       )}
 
