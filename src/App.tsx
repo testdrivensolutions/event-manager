@@ -96,8 +96,8 @@ const App = () => {
         showLegend
         showTooltip
         hasWeekends={hasWeekends}
-        dateFromPicker={monthYear}
-        datePicker={
+        date={monthYear}
+        headline={
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               value={monthYear}
@@ -119,7 +119,6 @@ const App = () => {
         }
         loading={loading}
         onClick={handleClick}
-        onUpdateDate={handleUpdateDate}
       />
     </div>
   )

@@ -14,29 +14,27 @@ export const EventManager: React.FC<Props> = ({
   title = null,
   loading = false,
   search = null,
-  datePicker = null,
+  headline = null,
   pagination = null,
   actionsPosition = 'top',
   noDataText = 'No data',
-  dateFromPicker = null,
+  date = null,
   onClick,
-  onUpdateDate,
 }) => {
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useEffect(() => {
-    if (datePicker && dateFromPicker) {
-      setDaysInMonth(getDaysInMonth(dateFromPicker, hasWeekends))
-      setMonthYear(dateFromPicker)
+    if (headline && date) {
+      setDaysInMonth(getDaysInMonth(date, hasWeekends))
+      setMonthYear(date)
     } else {
       setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
-      onUpdateDate(monthYear)
     }
-  }, [monthYear, hasWeekends, dateFromPicker])
+  }, [monthYear, hasWeekends, date])
 
-  const renderActions = datePicker ? (
-    datePicker
+  const renderActions = headline ? (
+    headline
   ) : (
     <Actions
       monthYear={monthYear}
