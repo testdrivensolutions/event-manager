@@ -47,11 +47,11 @@ export const EventManager: React.FC<Props> = ({
       className={styles.timelineContainer}
       id={`${tableId} timeline-container`}
     >
-      <div className={styles.timelineHeadline}>
+      {/* <div className={styles.timelineHeadline}>
         {actionsPosition === 'top' && renderActions}
         <div className={styles.spacer}></div>
         {search}
-      </div>
+      </div> */}
 
       {loading ? (
         <Loading />
