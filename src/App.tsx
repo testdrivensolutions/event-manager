@@ -93,7 +93,13 @@ const App = () => {
           />
         }
         actionsPosition='top'
-        showLegend
+        legendItem={{
+          pending: '#FFD54F',
+          approved: '#81C784',
+          rejected: '#FFAB91',
+          expired: '#9E9E9E',
+          default: '#000',
+        }}
         showTooltip
         hasWeekends={hasWeekends}
         date={monthYear}

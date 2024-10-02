@@ -1,37 +1,24 @@
-import React from "react";
-import { Resource } from "../../types";
-import styles from "./Legend.module.scss";
+import React from 'react'
+import styles from './Legend.module.scss'
 
 type Props = {
-  resources: Resource[]
+  legendItem: { [key: string]: string }
 }
 
-export const Legend: React.FC<Props> = ({ resources }) => {
-  const typeList: { title: string; color?: string }[] = resources.flatMap(
-    (resource) =>
-      resource.events.map((event) => ({
-        title: event.title,
-        color: event.color,
-      })),
-  );
-
-  const uniqueTypes = [
-    ...new Map(typeList.map((item) => [item["title"], item])).values(),
-  ];
-
+export const Legend: React.FC<Props> = ({ legendItem }) => {
   return (
     <div className={styles.legend}>
-      {uniqueTypes.map((type) => (
-        <div key={type.title} className={styles.type}>
+      {Object.keys(legendItem).map((key) => (
+        <div key={key} className={styles.type}>
           <span>
             <div
               className={styles.color}
-              style={{ backgroundColor: type.color }}
+              style={{ backgroundColor: legendItem[key] }}
             ></div>
           </span>
-          {type.title}
+          {key.charAt(0).toUpperCase() + key.slice(1)}
         </div>
       ))}
     </div>
-  );
-};
+  )
+}

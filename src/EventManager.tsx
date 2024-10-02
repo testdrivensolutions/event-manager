@@ -8,7 +8,6 @@ export const EventManager: React.FC<Props> = ({
   tableId,
   hasWeekends = false,
   flat = false,
-  showLegend = false,
   showTooltip = false,
   multiLine = true,
   title = null,
@@ -19,6 +18,7 @@ export const EventManager: React.FC<Props> = ({
   actionsPosition = 'top',
   noDataText = 'No data',
   date = null,
+  legendItem = null,
   onClick,
 }) => {
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
@@ -77,11 +77,7 @@ export const EventManager: React.FC<Props> = ({
         </div>
       )}
 
-      <Footer
-        resources={resources}
-        pagination={pagination}
-        showLegend={showLegend}
-      >
+      <Footer legendItem={legendItem} pagination={pagination}>
         {actionsPosition === 'bottom' && renderActions}
       </Footer>
     </div>

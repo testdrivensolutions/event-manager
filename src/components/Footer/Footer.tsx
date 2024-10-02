@@ -1,24 +1,17 @@
-import React, { ReactElement } from "react";
-import { Legend } from "../Legend";
-import { Resource } from "../../types";
-import styles from "./Footer.module.scss";
+import React, { ReactElement } from 'react'
+import { Legend } from '../Legend'
+import styles from './Footer.module.scss'
 
 type Props = {
-  resources: Resource[]
-  showLegend: boolean
+  legendItem: { [key: string]: string } | null
   pagination: ReactElement<HTMLDivElement> | null
   children: React.ReactNode
 }
 
-export const Footer = ({
-  resources,
-  showLegend,
-  pagination,
-  children,
-}: Props) => (
-    <div className={styles.footer}>
-      {showLegend && <Legend resources={resources} />}
-      {children}
-      {pagination}
-    </div>
-  );
+export const Footer = ({ legendItem, pagination, children }: Props) => (
+  <div className={styles.footer}>
+    {legendItem && <Legend legendItem={legendItem} />}
+    {children}
+    {pagination}
+  </div>
+)

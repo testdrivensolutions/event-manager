@@ -38,7 +38,6 @@ export type Props = {
   tableId: ID
   hasWeekends?: boolean // default false
   flat?: boolean // default false
-  showLegend?: boolean // default false
   showTooltip?: boolean // default false
   loading?: boolean // default false
   multiLine?: boolean // default true
@@ -47,6 +46,7 @@ export type Props = {
   headline?: ReactElement<HTMLDivElement>
   pagination?: ReactElement<HTMLDivElement>
   title?: string
+  legendItem?: { [key: string]: string }
   actionsPosition?: 'top' | 'bottom' // default 'top'
   noDataText?: string // default 'No data'
   onClick?: (data: ClickData | undefined) => void
