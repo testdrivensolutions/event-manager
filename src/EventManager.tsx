@@ -22,9 +22,11 @@ export const EventManager: React.FC<Props> = ({
   onClick,
 }) => {
   const [monthYear, setMonthYear] = useState(getYearAndMonth())
+  const [dateTitle, setDateTitle] = useState(title)
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useEffect(() => {
+    setDateTitle(formatMonthYear(monthYear))
     if (headline && date) {
       setDaysInMonth(getDaysInMonth(date, hasWeekends))
       setMonthYear(date)
@@ -58,7 +60,7 @@ export const EventManager: React.FC<Props> = ({
       ) : resources.length > 0 ? (
         <EventTable
           resources={resources}
-          title={title ?? formatMonthYear(monthYear)}
+          title={dateTitle}
           daysInMonth={daysInMonth}
           monthYear={monthYear}
           hasWeekends={hasWeekends}
@@ -71,7 +73,7 @@ export const EventManager: React.FC<Props> = ({
       ) : (
         <div className={styles.noData}>
           <div>
-            <h3>{formatMonthYear(monthYear)}</h3>
+            <h3>{dateTitle}</h3>
             <div>{noDataText}</div>
           </div>
         </div>
