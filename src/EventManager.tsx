@@ -26,14 +26,15 @@ export const EventManager: React.FC<Props> = ({
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useEffect(() => {
-    setDateTitle(formatMonthYear(monthYear))
     if (headline && date) {
       setDaysInMonth(getDaysInMonth(date, hasWeekends))
       setMonthYear(date)
+      setDateTitle(formatMonthYear(date))
     } else {
       setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
+      setDateTitle(formatMonthYear(monthYear))
     }
-  }, [monthYear, hasWeekends, date])
+  }, [hasWeekends, date])
 
   const renderActions = headline ? (
     headline
