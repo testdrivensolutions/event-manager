@@ -42,7 +42,7 @@ export type Props = {
   loading?: boolean // default false
   multiLine?: boolean // default true
   search?: ReactElement<HTMLInputElement>
-  date?: Date
+  date: Date
   headline?: ReactElement<HTMLDivElement>
   pagination?: ReactElement<HTMLDivElement>
   title?: string

@@ -69,6 +69,24 @@ const App = () => {
       <Button onClick={() => setHasWeekends(!hasWeekends)}>
         Weekend toggle
       </Button>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+          value={monthYear}
+          label={'"year" and "month"'}
+          views={['year', 'month']}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant='outlined'
+              inputProps={{ ...params.inputProps, readOnly: true }}
+              InputLabelProps={{ shrink: true }}
+              margin='dense'
+              size='small'
+            />
+          )}
+          onChange={handleDateChange}
+        />
+      </LocalizationProvider>
       <EventManager
         resources={data}
         tableId={1}
@@ -103,26 +121,6 @@ const App = () => {
         showTooltip
         hasWeekends={hasWeekends}
         date={monthYear}
-        headline={
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              value={monthYear}
-              label={'"year" and "month"'}
-              views={['year', 'month']}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant='outlined'
-                  inputProps={{ ...params.inputProps, readOnly: true }}
-                  InputLabelProps={{ shrink: true }}
-                  margin='dense'
-                  size='small'
-                />
-              )}
-              onChange={handleDateChange}
-            />
-          </LocalizationProvider>
-        }
         loading={loading}
         onClick={handleClick}
       />

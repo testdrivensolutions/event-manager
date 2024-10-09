@@ -12,12 +12,11 @@ export const EventManager: React.FC<Props> = ({
   multiLine = true,
   title = null,
   loading = false,
-  search = null,
   headline = null,
   pagination = null,
   actionsPosition = 'top',
   noDataText = 'No data',
-  date = null,
+  date,
   legendItem = null,
   onClick,
 }) => {
@@ -26,14 +25,8 @@ export const EventManager: React.FC<Props> = ({
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(monthYear))
 
   useEffect(() => {
-    if (headline && date) {
-      setDaysInMonth(getDaysInMonth(date, hasWeekends))
-      setMonthYear(date)
-      setDateTitle(formatMonthYear(date))
-    } else {
-      setDaysInMonth(getDaysInMonth(monthYear, hasWeekends))
-      setDateTitle(formatMonthYear(monthYear))
-    }
+    setDaysInMonth(getDaysInMonth(date, hasWeekends))
+    setDateTitle(formatMonthYear(date))
   }, [hasWeekends, date])
 
   const renderActions = headline ? (
@@ -50,12 +43,6 @@ export const EventManager: React.FC<Props> = ({
       className={styles.timelineContainer}
       id={`${tableId} timeline-container`}
     >
-      {/* <div className={styles.timelineHeadline}>
-        {actionsPosition === 'top' && renderActions}
-        <div className={styles.spacer}></div>
-        {search}
-      </div> */}
-
       {loading ? (
         <Loading />
       ) : resources.length > 0 ? (
